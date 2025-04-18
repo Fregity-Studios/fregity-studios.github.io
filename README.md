@@ -2,5 +2,5 @@ Welcome to my website, this is where I will host my stupid projects such as Anth
 
 So far my only project is Anthony Clicker but I will add more in the future.
 
-Access the site [Here.](https://fregitystudios.github.io)
+Access the site here at [https://fregity-studios.github.io](https://fregity-studios.github.io)
 
