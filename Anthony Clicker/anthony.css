@@ -1,0 +1,140 @@
+body {
+    text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    font-weight: 3px;
+}
+
+#iconChange {
+  margin-right: 200px;
+}
+
+#clickericon{
+  text-align: center;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 5px;
+  margin-bottom: 30px;
+  transition: transform 0.3s ease;
+}
+
+h1 {
+  font-size: 25px;
+  font-weight: 5px;
+}
+
+/* buttons */ 
+button.styled {
+  background-color: transparent;
+  border: 1px solid black;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  font-size: 1.5rem;
+}
+button.styled:hover {
+  transform: scale(1.1);
+}
+.mute-btn {
+  top: 10px;
+  left: 10px;
+}
+.icon-btn {
+  font-size: 1.2rem !important; 
+}
+.building {
+  margin-right: 10px;
+}
+/* end buttons */
+
+#upgradesMenuWrapper {
+  position: absolute;
+  top: 5px;
+  right: 35px;
+  text-align: right;
+  z-index: 10;
+}
+
+/* fade-in */
+
+.hidden {
+  display: none;
+}
+
+.fade-in {
+  display: inline-block;
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* bowling ball */
+
+#goldenBall {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background-image: url('Pictures/bowlingball.png');
+  background-size: cover;
+  z-index: 1000;
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  opacity: 0;
+  animation: spin 1s linear infinite; /* This makes the ball spin */
+  transform: scale(0.5) rotate(0deg);
+}
+
+#goldenBall.spin {
+  animation: spin 1s linear infinite;
+}
+
+#goldenBall.show {
+  opacity: 1;
+  transform: scale(1.2) rotate(0deg);
+}
+
+#goldenBall.hidden {
+  opacity: 0;
+  transform: scale(0.5) rotate(0deg);
+  pointer-events: none;
+}
+
+@keyframes spin {
+  from { transform: scale(1) rotate(0deg); }
+  to { transform: scale(1) rotate(360deg); }
+}
+
+/* end fade-in */
+
+/* bowling ball text */ 
+#bonusText {
+  position: fixed;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0); /* semi-transparent background */
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  color: black;
+  text-shadow: 0 0 5px black;
+  z-index: 1001;
+  opacity: 0; /* Start hidden */
+  transition: opacity 0.3s ease; /* Smooth fade-in and fade-out */
+}
+
+#bonusText.show {
+  opacity: 1; /* Fade in */
+}
+
+#bonusText.fade-out {
+  opacity: 0; /* Fade out */
+}
+
+
+/* end bowling ball text */

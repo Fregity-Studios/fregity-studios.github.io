@@ -1,0 +1,46 @@
+Here’s how to update it:
+
+PATCH (0.0.x): Bug fixes or tiny changes (eg, balancing prices, fixing typos)
+MINOR (0.x.0): New features or improvements (eg, added a new building or upgrade)
+MAJOR (x.0.0): Big overhauls or breaking changes (eg, major UI change or game mechanics revamp)
+Add name before version number to know who added which features
+
+Nick total hours spent - 12
+
+4/11/25
+Nick - v0.0.1 first version, very very basic
+
+Nick - v0.0.2 updated buttons and changed name of buildings
+
+Nick - v0.0.3 minor change on how the scaling of prices works
+
+Nick - v0.0.4 mini fix of broken FPS returning NaN
+
+Nick - v0.0.5 fixed big error with incorrect variables and added toilet
+
+Nick - v0.1.0 added time played counter
+
+4/12/25
+Nick - v0.1.1 added cycle anthony button and moved the info to the right
+
+Nick - v0.1.2 changed the way anthony jiggles
+
+Nick - v0.1.3 made fart sounds on click
+
+Nick - v0.1.4 made toilet button fade in
+
+Nick - v0.1.5 changed ammount that buildings give to slow gameplay down
+
+4/15/25
+
+Nick - v0.2.0 created upgrades menu
+
+Nick - v0.2.1 minor ui changes and consistency between buttons
+
+4/16/25
+
+Nick - v0.3.0 added golden bowling ball and changed scaling of prices
+
+4/17/25
+
+Nick - v0.4.0 added save game feature
