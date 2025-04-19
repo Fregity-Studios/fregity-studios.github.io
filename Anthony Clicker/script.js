@@ -12,8 +12,10 @@ let fpcBought = 0;
 let burritosBought = 0;
 let toiletsBought = 0;
 let bathroomsBought = 0;
+let tacoStandsBought = 0;
 let moreIngredients = false;
 let improvedSeats = false;
+let doubleFlush = false;
 
 let burrito = 0;
 let costOfBurrito = 10;
@@ -27,16 +29,22 @@ let costOfToilets = 10000;
 let bathrooms = 0;
 let costOfBathroom = 25000;
 
+let tacoStands = 0;
+let costOfTacoStands = 100000;
+
 let globalProductionMultiplier = 1;
+let passiveProductionMultiplier = 1;
+let fpcMultiplier = 1;
 let burritoMultiplier = 1;
 let toiletMultiplier = 1;
 let bathroomMultiplier = 1;
+let tacoStandsMultiplier = 1;
 
 
 // updates ui of current values
 function update() {
   document.getElementById('farts').innerHTML = "Farts: " + farts.toString();
-  fps = (getProductionAmount("burrito") + getProductionAmount("toilet") + getProductionAmount("bathroom")) * globalProductionMultiplier;
+  fps = (getProductionAmount("burrito") + getProductionAmount("toilet") + getProductionAmount("bathroom") + getProductionAmount("tacoStand"));
   document.getElementById('fpc').innerHTML = "Farts per Click: " + fpc;
   document.getElementById('fps').innerHTML = "Farts per Second: " + fps;
   document.getElementById('buyFpcBtn').innerText = `Buy (Placeholder) (${costOfFpc} farts)`;
@@ -59,15 +67,16 @@ function update() {
 // logic for upgrade buttons 
 function getProductionAmount(which) { 
   if (which === "burrito") { // if burrito is pressd 
-    return Math.floor(burritosBought * burritoMultiplier); //return burrito bought * burrito multiplier
+    return Math.floor(burritosBought * burritoMultiplier * passiveProductionMultiplier); // return burrito bought * burrito multiplier
   } else if (which === "fpc") { // if fpc is pressed 
-    return Math.floor(1); // return 1? idk what this does lol (I didn't write this part of code) 
+    return Math.floor((fpcBought + 1) * fpcMultiplier); // return fpc bought * fpc multiplier
   } else if (which === "toilet") { // if toilet is pressed 
-    return Math.floor(100 * (toiletsBought * toiletMultiplier)); // return toilets bought * toilet multiplier
+    return Math.floor(100 * (toiletsBought * toiletMultiplier * passiveProductionMultiplier)); // return toilets bought * toilet multiplier
   } else if (which === "bathroom") { // if bathroom is pressed
-    return Math.floor(250 * (bathroomsBought * bathroomMultiplier));  // return bathrooms bought * bathroom multiplier
+    return Math.floor(250 * (bathroomsBought * bathroomMultiplier * passiveProductionMultiplier));  // return bathrooms bought * bathroom multiplier
+  } else if (which === "tacoStand") { // if taco stand is pressed
+    return Math.floor(750 * (tacoStandsBought * tacoStandsMultiplier * passiveProductionMultiplier)); // return taco stands bought * taco stand multiplier
   }
-
   return 0; // fallback to prevent an error from being flagged 
 }
 
@@ -107,6 +116,15 @@ function buyBathroom() {
   }
   update();
 }
+// logic to buy taco stands
+function buyTacoStand() {
+  if (farts >= costOfTacoStands) {
+    tacoStands += getProductionAmount("tacoStand");
+    farts -= costOfTacoStands;
+    costOfTacoStands = increasePrice("tacoStand");
+  }
+  update();
+}
 
 // logic to buy upgrades
 function buyBurritoUpgrade() {
@@ -127,6 +145,15 @@ function buyToiletUpgrade() {
     update();
   }
 }
+function buyDoubleFlush() {
+  if (farts >= 1000000 && !doubleFlush) {
+    farts -= 1000000;
+    passiveProductionMultiplier *= 2;
+    doubleFlush = true;
+    document.getElementById("upgradeDoubleFlush").remove();
+    update();
+  }
+}
 
 // making anthony jiggle
 async function moreU() {
@@ -141,18 +168,12 @@ async function moreU() {
     sound.currentTime = 0;
     sound.play();
   }
-  if (totalFarts >= 2500 && !moreIngredients) {
-    document.getElementById("upgradeBurritoBtn").classList.remove("hidden");
-  }
-  if (totalFarts >= 250000 && !improvedSeats) {
-    document.getElementById("upgradeToiletBtn").classList.remove("hidden");
-  }
 
   icon.style.transform = 'scale(0.95)';
   await new Promise(resolve => setTimeout(resolve, 100));
   icon.style.transform = 'scale(1)';
-  farts += fpc;
-  totalFarts += fpc;
+  farts += getProductionAmount("fpc");
+  totalFarts += getProductionAmount("fpc");
   update();
 }
 // checks to see if sounds are muted
@@ -225,10 +246,10 @@ function showBonusText(message) {
   }, 2000); // Fade out after 2 seconds
 }
 function activateProductionBoost() {
-  globalProductionMultiplier = 3;
+  globalProductionMultiplier *= 3;
   update();
   setTimeout(() => {
-    globalProductionMultiplier = 1;
+    globalProductionMultiplier /= 3;
     update();
   }, 60000);
 }
@@ -256,6 +277,12 @@ async function rec() {
   farts += fps;
   totalFarts += fps;
   timePlayed += 1; // Increment time played every second
+  if (totalFarts >= 2500 && !moreIngredients) {
+    document.getElementById("upgradeBurritoBtn").classList.remove("hidden");
+  }
+  if (totalFarts >= 250000 && !improvedSeats) {
+    document.getElementById("upgradeToiletBtn").classList.remove("hidden");
+  }
   update();
   requestAnimationFrame(rec);
 }
