@@ -331,15 +331,6 @@ function checkTacoStandUnlock() {
   }
 }
 
-function checkDoubleFlushUnlock() {
-  const doubleFlushBtn = document.getElementById("upgradeDoubleFlush");
-  if (totalFarts >= 1000 && doubleFlushBtn.classList.contains("hidden")) {
-    doubleFlushBtn.style.display = 'inline-block';
-    doubleFlushBtn.classList.remove("hidden");
-    doubleFlushBtn.classList.add("fade-in");
-  }
-}
-
 rec(); // dont know what this does but it makes it update smoother?
 function getBuildingCost(baseCost, amountOwned, multiplier = 1.1) { // Scales by 10%
   return Math.floor(baseCost * Math.pow(multiplier, amountOwned));
