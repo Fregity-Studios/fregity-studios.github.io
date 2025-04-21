@@ -50,3 +50,5 @@ Nick - v0.5.0 added taco shack building and double flush upgrade
 4/21/25
 
 Nick - v0.5.1 fixed bug with fpc being way too much
+
+Nick - v0.5.2 fixed double flush bug

@@ -1,11 +1,10 @@
 1. high urgency stuff
-make sure game is bug-free by sunday 4/20/25
-add more buildings
+
 
 
 2. med urgency stuff
 work on prestige system
-
+add more buildings
 
 
 3. low urgency stuff
