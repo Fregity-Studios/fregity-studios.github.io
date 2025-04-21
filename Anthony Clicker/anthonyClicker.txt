@@ -5,8 +5,6 @@ MINOR (0.x.0): New features or improvements (eg, added a new building or upgrade
 MAJOR (x.0.0): Big overhauls or breaking changes (eg, major UI change or game mechanics revamp)
 Add name before version number to know who added which features
 
-Nick total hours spent - 12
-
 4/11/25
 Nick - v0.0.1 first version, very very basic
 
@@ -48,3 +46,7 @@ Nick - v0.4.0 added save game feature
 4/18/25
 
 Nick - v0.5.0 added taco shack building and double flush upgrade
+
+4/21/25
+
+Nick - v0.5.1 fixed bug with fpc being way too much

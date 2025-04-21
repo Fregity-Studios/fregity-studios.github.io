@@ -45,6 +45,13 @@ button.styled:hover {
 .building {
   margin-right: 10px;
 }
+
+#startButton {
+  position: absolute;
+  font-size: 72px;
+  top: 40%;
+  left: 38%;
+}
 /* end buttons */
 
 #upgradesMenuWrapper {
