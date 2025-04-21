@@ -177,9 +177,11 @@ async function moreU() {
   icon.style.transform = 'scale(0.95)';
   await new Promise(resolve => setTimeout(resolve, 100));
   icon.style.transform = 'scale(1)';
-  farts += getProductionAmount("fpc");
-  totalFarts += getProductionAmount("fpc");
-  update();
+  
+  // Update farts based on farts per click (fpc)
+  farts += getProductionAmount("fpc"); // Ensure this returns the correct value
+  totalFarts += getProductionAmount("fpc"); // Update total farts
+  update(); // Update the UI
 }
 // checks to see if sounds are muted
 document.getElementById('muteButton').addEventListener('click', () => {
@@ -279,18 +281,27 @@ scheduleGoldenBall();
 // adds farts every second
 async function rec() {
   await new Promise(resolve => setTimeout(resolve, 1000));
-  farts + fps;
-  totalFarts += fps;
+
+  // Calculate fps based on current production amounts
+  let fps = (getProductionAmount("burrito") + getProductionAmount("toilet") + getProductionAmount("bathroom") + getProductionAmount("tacoStand")) * globalProductionMultiplier;
+
+  // Update farts with fps
+  farts += fps; // This should correctly add fps to farts
+  totalFarts += fps; // Update total farts
   timePlayed += 1; // Increment time played every second
+
+  // Check for upgrades
   if (totalFarts >= 2500 && !moreIngredients) {
     document.getElementById("upgradeBurritoBtn").classList.remove("hidden");
   }
   if (totalFarts >= 250000 && !improvedSeats) {
     document.getElementById("upgradeToiletBtn").classList.remove("hidden");
   }
-  update();
-  requestAnimationFrame(rec);
+
+  update(); // Update the UI
+  requestAnimationFrame(rec); // Call rec again for the next second
 }
+
 // checks to see if building should be unlocked and unlocks it
 function checkToiletUnlock() {
   const toiletBtn = document.getElementById("buyToiletBtn");
@@ -449,9 +460,45 @@ window.addEventListener('DOMContentLoaded', () => {
   document.getElementById("deleteSaveButton").addEventListener("click", () => {
     if (confirm("Are you sure you want to delete your save?")) {
       localStorage.removeItem("fartGameSave");
-      location.reload(); // Reload to reset everything
+  
+      // Reset all relevant variables to their initial values
+      farts = 0;
+      totalFarts = 0;
+      timePlayed = 0;
+      currentImageIndex = 0;
+      effectsMuted = false;
+      burritosBought = 0;
+      fpcBought = 0;
+      toiletsBought = 0;
+      bathroomsBought = 0;
+      tacoStandsBought = 0;
+      moreIngredients = false;
+      improvedSeats = false;
+      doubleFlush = false;
+      burrito = 0;
+      fpc = 1;
+      costOfBurrito = 10;
+      costOfFpc = 10;
+      toilets = 0;
+      costOfToilets = 10000;
+      bathrooms = 0;
+      costOfBathroom = 25000;
+      tacoStands = 0;
+      costOfTacoStands = 100000;
+      globalProductionMultiplier = 1;
+      clickProductionMultiplier = 1;
+      passiveProductionMultiplier = 1;
+      fpcMultiplier = 1;
+      burritoMultiplier = 1;
+      toiletMultiplier = 1;
+      bathroomMultiplier = 1;
+      tacoStandsMultiplier = 1;
+  
+      // Reload the page to reset the game state
+      location.reload(); 
     }
   });
+  
   document.getElementById("startButton").addEventListener("click", function() {
     document.getElementById("startButton").style.display = "none";
     document.getElementById("game").style.display = "block";
