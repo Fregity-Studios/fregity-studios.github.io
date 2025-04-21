@@ -45,7 +45,7 @@ let tacoStandsMultiplier = 1;
 // updates ui of current values
 function update() {
   document.getElementById('farts').innerHTML = "Farts: " + farts.toString();
-  fps = (getProductionAmount("burrito") + getProductionAmount("toilet") + getProductionAmount("bathroom") + getProductionAmount("tacoStand") * globalProductionMultiplier);
+  fps = ((getProductionAmount("burrito") + getProductionAmount("toilet") + getProductionAmount("bathroom") + getProductionAmount("tacoStand")) * globalProductionMultiplier);
   document.getElementById('fpc').innerHTML = "Farts per Click: " + fpc;
   document.getElementById('fps').innerHTML = "Farts per Second: " + fps;
   document.getElementById('buyFpcBtn').innerText = `Buy (Placeholder) (${costOfFpc} farts)`;
@@ -65,7 +65,6 @@ function update() {
   checkToiletUnlock();
   checkBathroomUnlock();
   checkTacoStandUnlock();
-  checkDoubleFlushUnlock();
 }
 
 // logic for upgrade buttons 
@@ -153,7 +152,7 @@ function buyToiletUpgrade() {
 function buyDoubleFlush() {
   if (farts >= 1000000 && !doubleFlush) {
     farts -= 1000000;
-    passiveProductionMultiplier *= 2;
+    globalProductionMultiplier *= 2;
     doubleFlush = true;
     document.getElementById("upgradeDoubleFlush").remove();
     update();
@@ -297,6 +296,9 @@ async function rec() {
   if (totalFarts >= 250000 && !improvedSeats) {
     document.getElementById("upgradeToiletBtn").classList.remove("hidden");
   }
+  if (totalFarts >= 1000000 && !doubleFlush) {
+    document.getElementById("upgradeDoubleFlush").classList.remove("hidden");
+  }
 
   update(); // Update the UI
   requestAnimationFrame(rec); // Call rec again for the next second
@@ -331,7 +333,7 @@ function checkTacoStandUnlock() {
 
 function checkDoubleFlushUnlock() {
   const doubleFlushBtn = document.getElementById("upgradeDoubleFlush");
-  if (totalFarts >= 1000000 && doubleFlushBtn.classList.contains("hidden")) {
+  if (totalFarts >= 1000 && doubleFlushBtn.classList.contains("hidden")) {
     doubleFlushBtn.style.display = 'inline-block';
     doubleFlushBtn.classList.remove("hidden");
     doubleFlushBtn.classList.add("fade-in");
