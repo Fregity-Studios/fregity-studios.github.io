@@ -279,7 +279,7 @@ scheduleGoldenBall();
 // adds farts every second
 async function rec() {
   await new Promise(resolve => setTimeout(resolve, 1000));
-  farts += fps;
+  farts + fps;
   totalFarts += fps;
   timePlayed += 1; // Increment time played every second
   if (totalFarts >= 2500 && !moreIngredients) {
@@ -327,7 +327,7 @@ function checkDoubleFlushUnlock() {
   }
 }
 
-rec(); // dont know what this does but it makes it update smoother
+rec(); // dont know what this does but it makes it update smoother?
 function getBuildingCost(baseCost, amountOwned, multiplier = 1.1) { // Scales by 10%
   return Math.floor(baseCost * Math.pow(multiplier, amountOwned));
   timePlayed += 1; // Increment time played every second
@@ -347,8 +347,7 @@ function increasePrice(which) {
   } else if (which == "bathroom") {
     bathroomsBought++;
     return getBuildingCost(25000, bathroomsBought, 1.02)
-  }
-    else if (which == "tacoStand") {
+  } else if (which == "tacoStand") {
     tacoStandsBought++;
     return getBuildingCost(100000, tacoStandsBought, 1.02)
   }
