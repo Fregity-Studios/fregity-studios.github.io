@@ -190,10 +190,10 @@ document.getElementById('muteButton').addEventListener('click', () => {
 
 // change anthony icon 
 const imageSources = [
-  "pictures/anthony.jpg",
-  "pictures/anthony2.jpg",
-  "pictures/anthony3.jpg",
-  "pictures/anthony4.jpg"
+  "Anthony Clicker/Pictures/anthony.jpg",
+  "Anthony Clicker/Pictures/anthony2.jpg",
+  "Anthony Clicker/Pictures/anthony3.jpg",
+  "Anthony Clicker/Pictures/anthony4.jpg"
 ];
 function cycleImage() {
   currentImageIndex = (currentImageIndex + 1) % imageSources.length;
