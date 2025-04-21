@@ -62,6 +62,7 @@ function update() {
   document.getElementById('timePlayed').innerHTML = `Time Wasted: ${formatTime(timePlayed)}`;
   checkToiletUnlock();
   checkBathroomUnlock();
+  checkDoubleFlushUnlock();
 }
 
 // logic for upgrade buttons 
@@ -301,6 +302,15 @@ function checkBathroomUnlock() {
     bathroomBtn.style.display = 'inline-block';
     bathroomBtn.classList.remove("hidden");
     bathroomBtn.classList.add("fade-in");
+  }
+}
+
+function checkDoubleFlushUnlock() {
+  const doubleFlushBtn = document.getElementById("upgradeDoubleFlush");
+  if (totalFarts >= 1000000 && doubleFlushBtn.classList.contains("hidden")) {
+    doubleFlushBtn.style.display = 'inline-block';
+    doubleFlushBtn.classList.remove("hidden");
+    doubleFlushBtn.classList.add("fade-in");
   }
 }
 
