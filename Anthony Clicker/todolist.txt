@@ -4,7 +4,8 @@
 
 2. med urgency stuff
 work on prestige system
-add more buildings
+add more buildings/upgrades
+figure out a way to make it not say 1000000 and instead say 1.00 M for farts and buildings
 
 
 3. low urgency stuff

@@ -390,13 +390,17 @@ function saveGame() {
     costOfBurrito,
     costOfToilets,
     costOfBathroom,
+    costOfTacoStands,
     moreIngredients,
     doubleFlush,
     improvedSeats,
     globalProductionMultiplier,
+    passiveProductionMultiplier,
+    clickProductionMultiplier,
     burritoMultiplier,
     toiletMultiplier,
-    bathroomMultiplier
+    bathroomMultiplier,
+    tacoStandsMultiplier,
   };
   localStorage.setItem('fartGameSave', JSON.stringify(saveData));
   const msg = document.getElementById('saveMessage');
@@ -426,13 +430,17 @@ function loadGame() {
   costOfBurrito = data.costOfBurrito ?? costOfBurrito;
   costOfToilets = data.costOfToilets ?? costOfToilets;
   costOfBathroom = data.costOfBathroom ?? costOfBathroom;
+  costOfTacoStands = data.costOfTacoStands ?? costOfTacoStands;
   moreIngredients = data.moreIngredients ?? moreIngredients;
   improvedSeats = data.improvedSeats ?? improvedSeats;
   doubleFlush = data.doubleFlush ?? doubleFlush;
   globalProductionMultiplier = data.globalProductionMultiplier ?? globalProductionMultiplier;
+  passiveProductionMultiplier = data.passiveProductionMultiplier ?? passiveProductionMultiplier;
+  clickProductionMultiplier = data.clickProductionMultiplier ?? clickProductionMultiplier;
   burritoMultiplier = data.burritoMultiplier ?? burritoMultiplier;
   toiletMultiplier = data.toiletMultiplier ?? toiletMultiplier;
   bathroomMultiplier = data.bathroomMultiplier ?? bathroomMultiplier;
+  tacoStandsMultiplier = data.tacoStandsMultiplier ?? tacoStandsMultiplier;
 
   update();
 }
