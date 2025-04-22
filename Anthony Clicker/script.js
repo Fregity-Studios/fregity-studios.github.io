@@ -48,7 +48,7 @@ function update() {
   fps = ((getProductionAmount("burrito") + getProductionAmount("toilet") + getProductionAmount("bathroom") + getProductionAmount("tacoStand")) * globalProductionMultiplier);
   document.getElementById('fpc').innerHTML = "Farts per Click: " + fpc;
   document.getElementById('fps').innerHTML = "Farts per Second: " + fps;
-  document.getElementById('buyFpcBtn').innerText = `Buy (Placeholder) (${costOfFpc} farts)`;
+  document.getElementById('buyFpcBtn').innerText = `Buy Laxatives (${costOfFpc} farts)`;
   document.getElementById('buyBurritoBtn').innerText = `Buy Burrito (${costOfBurrito} farts)`;  
   document.getElementById('buyToiletBtn').innerText = `Buy Toilet (${costOfToilets} farts)`;
   document.getElementById('buyBathroomBtn').innerText = `Buy Bathroom (${costOfBathroom} farts)`;
