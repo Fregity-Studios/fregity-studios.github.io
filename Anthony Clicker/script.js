@@ -231,7 +231,7 @@ function activateGoldenBall() { // When clicked
   
   if (Math.random() < 0.2) { //  20% chance of giving 3x boost 
     activateProductionBoost();
-    showBonusText("🔥 3x Production Boost!");
+    showBonusText("🔥 3x Boost For 1 Minute!");
   } else {
     giveFartBonus(); // else give bonus farts 
     showBonusText("💨 Bonus Farts!");
@@ -341,19 +341,19 @@ function getBuildingCost(baseCost, amountOwned, multiplier = 1.1) { // Scales by
 function increasePrice(which) {
   if (which === "burrito") {
     burritosBought++;
-    return getBuildingCost(10, burritosBought, 1.02);
+    return getBuildingCost(10, burritosBought, 1.01);
   } else if (which === "fpc") {
     fpcBought++;
     return getBuildingCost(10, fpcBought, 1.05);
   } else if (which === "toilet") {
     toiletsBought++;
-    return getBuildingCost(10000, toiletsBought, 1.02);
+    return getBuildingCost(10000, toiletsBought, 1.01);
   } else if (which == "bathroom") {
     bathroomsBought++;
-    return getBuildingCost(25000, bathroomsBought, 1.02)
+    return getBuildingCost(25000, bathroomsBought, 1.01)
   } else if (which == "tacoStand") {
     tacoStandsBought++;
-    return getBuildingCost(100000, tacoStandsBought, 1.02)
+    return getBuildingCost(100000, tacoStandsBought, 1.01)
   }
 }
 // time saving function for time played
