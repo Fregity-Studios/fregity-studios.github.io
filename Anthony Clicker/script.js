@@ -13,9 +13,11 @@ let burritosBought = 0;
 let toiletsBought = 0;
 let bathroomsBought = 0;
 let tacoStandsBought = 0;
+let fartFactoriesBought = 0;
 let moreIngredients = false;
 let improvedSeats = false;
 let doubleFlush = false;
+let conveyorBelt = false;
 
 let burrito = 0;
 let costOfBurrito = 10;
@@ -32,6 +34,9 @@ let costOfBathroom = 25000;
 let tacoStands = 0;
 let costOfTacoStands = 100000;
 
+let fartFactories = 0;
+let costOfFartFactories = 1000000;
+
 let globalProductionMultiplier = 1;
 let clickProductionMultiplier = 1;
 let passiveProductionMultiplier = 1;
@@ -40,6 +45,7 @@ let burritoMultiplier = 1;
 let toiletMultiplier = 1;
 let bathroomMultiplier = 1;
 let tacoStandsMultiplier = 1;
+let fartFactoriesMultiplier = 1;
 
 
 // updates ui of current values
@@ -53,6 +59,7 @@ function update() {
   document.getElementById('buyToiletBtn').innerText = `Buy Toilet (${formatNumber(costOfToilets)} farts)`;
   document.getElementById('buyBathroomBtn').innerText = `Buy Bathroom (${formatNumber(costOfBathroom)} farts)`;
   document.getElementById('buyTacoStandBtn').innerText = `Buy Taco Stand (${formatNumber(costOfTacoStands)} farts)`;
+  document.getElementById('buyFartFactoryBtn').innerText = `Buy Fart Factory (${formatNumber(costOfFartFactories)} farts)`;
 
   function formatTime(seconds) {
     const hrs = Math.floor(seconds / 3600);
@@ -65,6 +72,7 @@ function update() {
   checkToiletUnlock();
   checkBathroomUnlock();
   checkTacoStandUnlock();
+  checkFartFactoryUnlock();
 }
 
 // logic for upgrade buttons 
@@ -79,6 +87,8 @@ function getProductionAmount(which) {
     return Math.floor(250 * (bathroomsBought * bathroomMultiplier * passiveProductionMultiplier));  // return bathrooms bought * bathroom multiplier
   } else if (which === "tacoStand") { // if taco stand is pressed
     return Math.floor(750 * (tacoStandsBought * tacoStandsMultiplier * passiveProductionMultiplier)); // return taco stands bought * taco stand multiplier
+  } else if (which === "fartFactory") { // if fart factory is pressed
+    return Math.floor(4000 * (fartFactoriesBought * fartFactoriesMultiplier * passiveProductionMultiplier)); // return fart factories * fart factory multiplier
   }
   return 0; // fallback to prevent an error from being flagged 
 }
@@ -128,6 +138,15 @@ function buyTacoStand() {
   }
   update();
 }
+// logic to buy fart factories
+function buyFartFactory() {
+  if (farts >= costOfFartFactories) {
+    fartFactories += 1;
+    farts -= costOfFartFactories;
+    costOfFartFactories = increasePrice("fartFactory");
+  }
+  update();
+}
 
 // logic to buy upgrades
 function buyBurritoUpgrade() {
@@ -152,9 +171,19 @@ function buyToiletUpgrade() {
 function buyDoubleFlush() {
   if (farts >= 1000000 && !doubleFlush) {
     farts -= 1000000;
-    globalProductionMultiplier *= 2;
+    bathroomMultiplier = 2;
     doubleFlush = true;
     document.getElementById("upgradeDoubleFlush").remove();
+    update();
+  }
+}
+
+function buyConveyorBelt() {
+  if (farts >= 5000000 && !conveyorBelt) {
+    farts -= 5000000;
+    fartFactoriesMultiplier = 2;
+    conveyorBelt = true;
+    document.getElementById("upgradeConveyorBelt").remove();
     update();
   }
 }
@@ -263,6 +292,7 @@ function activateProductionBoost() {
 function giveFartBonus() {
 	const bonus = Math.floor(farts * 0.15); // 15% of balance
 	farts += bonus;
+  totalFarts += bonus; // Update total farts
 	update();
 }
 
@@ -299,6 +329,9 @@ async function rec() {
   if (totalFarts >= 1000000 && !doubleFlush) {
     document.getElementById("upgradeDoubleFlush").classList.remove("hidden");
   }
+  if (totalFarts >= 5000000 && !conveyorBelt) {
+    document.getElementById("upgradeConveyorBelt").classList.remove("hidden");
+  }
 
   update(); // Update the UI
   requestAnimationFrame(rec); // Call rec again for the next second
@@ -331,6 +364,15 @@ function checkTacoStandUnlock() {
   }
 }
 
+function checkFartFactoryUnlock() {
+  const tacoStandBtn = document.getElementById("buyFartFactoryBtn");
+  if (totalFarts >= 5000000 && tacoStandBtn.classList.contains("hidden")) {
+    tacoStandBtn.style.display = 'inline-block';
+    tacoStandBtn.classList.remove("hidden");
+    tacoStandBtn.classList.add("fade-in");
+  }
+}
+
 rec(); // dont know what this does but it makes it update smoother?
 function getBuildingCost(baseCost, amountOwned, multiplier = 1.1) { // Scales by 10%
   return Math.floor(baseCost * Math.pow(multiplier, amountOwned));
@@ -354,6 +396,9 @@ function increasePrice(which) {
   } else if (which == "tacoStand") {
     tacoStandsBought++;
     return getBuildingCost(100000, tacoStandsBought, 1.01)
+  } else if (which == "fartFactory") {
+    fartFactoriesBought++;
+    return getBuildingCost(1000000, fartFactoriesBought, 1.01)
   }
 }
 // time saving function for time played
@@ -365,6 +410,13 @@ function formatTime(seconds) {
 }
 // formatting numbers for display
 function formatNumber(num) {
+  if (num >= 1e30) return (num / 1e30).toFixed(2) + " decillion";
+  if (num >= 1e27) return (num / 1e37).toFixed(2) + " nonillion";
+  if (num >= 1e24) return (num / 1e24).toFixed(2) + " septillion";
+  if (num >= 1e21) return (num / 1e21).toFixed(2) + " sextillion";
+  if (num >= 1e18) return (num / 1e18).toFixed(2) + " quintillion";
+  if (num >= 1e15) return (num / 1e15).toFixed(2) + " quadrillion";
+  if (num >= 1e12) return (num / 1e12).toFixed(2) + " trillion";
   if (num >= 1e9) return (num / 1e9).toFixed(2) + " billion";
   if (num >= 1e6) return (num / 1e6).toFixed(2) + " million";
   if (num >= 1e3) return (num / 1e3).toFixed(2) + "k";
@@ -387,19 +439,27 @@ function saveGame() {
     farts,
     totalFarts,
     fpc,
+    burrito,
+    toilets,
+    bathrooms,
+    tacoStands,
+    fartFactories,
     fpcBought,
     burritosBought,
     toiletsBought,
     bathroomsBought,
     tacoStandsBought,
+    fartFactoriesBought,
     costOfFpc,
     costOfBurrito,
     costOfToilets,
     costOfBathroom,
     costOfTacoStands,
+    costOfFartFactories,
     moreIngredients,
-    doubleFlush,
     improvedSeats,
+    doubleFlush,
+    conveyorBelt,
     globalProductionMultiplier,
     passiveProductionMultiplier,
     clickProductionMultiplier,
@@ -407,6 +467,7 @@ function saveGame() {
     toiletMultiplier,
     bathroomMultiplier,
     tacoStandsMultiplier,
+    fartFactoriesMultiplier,
   };
   localStorage.setItem('fartGameSave', JSON.stringify(saveData));
   const msg = document.getElementById('saveMessage');
@@ -427,19 +488,27 @@ function loadGame() {
   farts = data.farts ?? farts;
   totalFarts = data.totalFarts ?? totalFarts;
   fpc = data.fpc ?? fpc;
+  burrito = data.burrito ?? burrito;
+  toilets = data.toilets ?? toilets;
+  bathrooms = data.bathrooms ?? bathrooms;
+  tacoStands = data.tacoStands ?? tacoStands;
+  fartFactories = data.fartFactories ?? fartFactories;
   fpcBought = data.fpcBought ?? fpcBought;
   burritosBought = data.burritosBought ?? burritosBought;
   toiletsBought = data.toiletsBought ?? toiletsBought;
   bathroomsBought = data.bathroomsBought ?? bathroomsBought;
   tacoStandsBought = data.tacoStandsBought ?? tacoStandsBought;
+  fartFactoriesBought = data.fartFactoriesBought ?? fartFactoriesBought;
   costOfFpc = data.costOfFpc ?? costOfFpc;
   costOfBurrito = data.costOfBurrito ?? costOfBurrito;
   costOfToilets = data.costOfToilets ?? costOfToilets;
   costOfBathroom = data.costOfBathroom ?? costOfBathroom;
   costOfTacoStands = data.costOfTacoStands ?? costOfTacoStands;
+  costOfFartFactories = data.costOfFartFactories ?? costOfFartFactories;
   moreIngredients = data.moreIngredients ?? moreIngredients;
   improvedSeats = data.improvedSeats ?? improvedSeats;
   doubleFlush = data.doubleFlush ?? doubleFlush;
+  conveyorBelt = data.conveyorBelt ?? conveyorBelt;
   globalProductionMultiplier = data.globalProductionMultiplier ?? globalProductionMultiplier;
   passiveProductionMultiplier = data.passiveProductionMultiplier ?? passiveProductionMultiplier;
   clickProductionMultiplier = data.clickProductionMultiplier ?? clickProductionMultiplier;
@@ -447,6 +516,7 @@ function loadGame() {
   toiletMultiplier = data.toiletMultiplier ?? toiletMultiplier;
   bathroomMultiplier = data.bathroomMultiplier ?? bathroomMultiplier;
   tacoStandsMultiplier = data.tacoStandsMultiplier ?? tacoStandsMultiplier;
+  fartFactoriesMultiplier = data.fartFactoriesMultiplier ?? fartFactoriesMultiplier;
 
   update();
 }
@@ -479,12 +549,15 @@ window.addEventListener('DOMContentLoaded', () => {
       toiletsBought = 0;
       bathroomsBought = 0;
       tacoStandsBought = 0;
+      fartFactoriesBought = 0;
       moreIngredients = false;
       improvedSeats = false;
       doubleFlush = false;
-      burrito = 0;
+      conveyorBelt = false;
       fpc = 1;
+      burrito = 0;
       costOfBurrito = 10;
+      fpc = 1;
       costOfFpc = 10;
       toilets = 0;
       costOfToilets = 10000;
@@ -492,6 +565,8 @@ window.addEventListener('DOMContentLoaded', () => {
       costOfBathroom = 25000;
       tacoStands = 0;
       costOfTacoStands = 100000;
+      fartFactories = 0;
+      costOfFartFactories = 1000000;
       globalProductionMultiplier = 1;
       clickProductionMultiplier = 1;
       passiveProductionMultiplier = 1;
@@ -500,6 +575,7 @@ window.addEventListener('DOMContentLoaded', () => {
       toiletMultiplier = 1;
       bathroomMultiplier = 1;
       tacoStandsMultiplier = 1;
+      fartFactoriesMultiplier = 1;
   
       // Reload the page to reset the game state
       location.reload(); 
