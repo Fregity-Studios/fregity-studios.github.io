@@ -35,10 +35,6 @@ button.styled {
 button.styled:hover {
   transform: scale(1.1);
 }
-.mute-btn {
-  top: 10px;
-  left: 10px;
-}
 .icon-btn {
   font-size: 1.2rem !important; 
 }
@@ -56,7 +52,7 @@ button.styled:hover {
 
 #upgradesMenuWrapper {
   position: absolute;
-  top: 5px;
+  top: 15px;
   right: 35px;
   text-align: right;
   z-index: 10;
