@@ -344,7 +344,7 @@ function increasePrice(which) {
     return getBuildingCost(10, burritosBought, 1.02);
   } else if (which === "fpc") {
     fpcBought++;
-    return getBuildingCost(10, fpcBought, 1.02);
+    return getBuildingCost(10, fpcBought, 1.05);
   } else if (which === "toilet") {
     toiletsBought++;
     return getBuildingCost(10000, toiletsBought, 1.02);
