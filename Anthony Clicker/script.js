@@ -337,7 +337,7 @@ function getBuildingCost(baseCost, amountOwned, multiplier = 1.1) { // Scales by
   timePlayed += 1; // Increment time played every second
 }
 
-// increasing price gradually by 2%
+// increasing price gradually by a %
 function increasePrice(which) {
   if (which === "burrito") {
     burritosBought++;
@@ -379,7 +379,6 @@ function saveGame() {
     currentImageIndex,
     farts,
     totalFarts,
-    burrito,
     fpc,
     fpcBought,
     burritosBought,
