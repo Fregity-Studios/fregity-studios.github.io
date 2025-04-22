@@ -44,15 +44,15 @@ let tacoStandsMultiplier = 1;
 
 // updates ui of current values
 function update() {
-  document.getElementById('farts').innerHTML = "Farts: " + farts.toString();
+  document.getElementById('farts').innerHTML = "Farts: " + formatNumber(farts).toString();
   fps = ((getProductionAmount("burrito") + getProductionAmount("toilet") + getProductionAmount("bathroom") + getProductionAmount("tacoStand")) * globalProductionMultiplier);
-  document.getElementById('fpc').innerHTML = "Farts per Click: " + fpc;
-  document.getElementById('fps').innerHTML = "Farts per Second: " + fps;
-  document.getElementById('buyFpcBtn').innerText = `Buy Laxatives (${costOfFpc} farts)`;
-  document.getElementById('buyBurritoBtn').innerText = `Buy Burrito (${costOfBurrito} farts)`;  
-  document.getElementById('buyToiletBtn').innerText = `Buy Toilet (${costOfToilets} farts)`;
-  document.getElementById('buyBathroomBtn').innerText = `Buy Bathroom (${costOfBathroom} farts)`;
-  document.getElementById('buyTacoStandBtn').innerText = `Buy Taco Stand (${costOfTacoStands} farts)`;
+  document.getElementById('fpc').innerHTML = "Farts per Click: " + formatNumber(fpc); // Update FPC display
+  document.getElementById('fps').innerHTML = "Farts per Second: " + formatNumber(fps); // Update FPS display
+  document.getElementById('buyFpcBtn').innerText = `Buy Laxatives (${formatNumber(costOfFpc)} farts)`;
+  document.getElementById('buyBurritoBtn').innerText = `Buy Burrito (${formatNumber(costOfBurrito)} farts)`;  
+  document.getElementById('buyToiletBtn').innerText = `Buy Toilet (${formatNumber(costOfToilets)} farts)`;
+  document.getElementById('buyBathroomBtn').innerText = `Buy Bathroom (${formatNumber(costOfBathroom)} farts)`;
+  document.getElementById('buyTacoStandBtn').innerText = `Buy Taco Stand (${formatNumber(costOfTacoStands)} farts)`;
 
   function formatTime(seconds) {
     const hrs = Math.floor(seconds / 3600);
@@ -362,6 +362,13 @@ function formatTime(seconds) {
   const mins = Math.floor((seconds % 3600) / 60);
   const secs = seconds % 60;
   return `${hrs}h ${mins}m ${secs}s`;
+}
+// formatting numbers for display
+function formatNumber(num) {
+  if (num >= 1e9) return (num / 1e9).toFixed(2) + " billion";
+  if (num >= 1e6) return (num / 1e6).toFixed(2) + " million";
+  if (num >= 1e3) return (num / 1e3).toFixed(2) + "k";
+  return Math.floor(num);
 }
 
 // checks to see if sounds are muted
