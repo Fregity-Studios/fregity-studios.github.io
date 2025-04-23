@@ -1,12 +1,13 @@
 1. high urgency stuff
+move site to joeshmuck.shop
 work on prestige system
 
 
 2. medium urgency stuff
-add more buildings/upgrades
+make better background
 
 
 3. low urgency stuff
 polish ui
-make better background
 have it use a different styles.css file based on if you are on pc or mobile
+add more buildings/upgrades

@@ -14,6 +14,8 @@ let toiletsBought = 0;
 let bathroomsBought = 0;
 let tacoStandsBought = 0;
 let fartFactoriesBought = 0;
+let strongerLaxatives = false;
+let evenStrongerLaxatives = false;
 let moreIngredients = false;
 let improvedSeats = false;
 let doubleFlush = false;
@@ -150,21 +152,42 @@ function buyFartFactory() {
 }
 
 // logic to buy upgrades
-function buyBurritoUpgrade() {
+
+function buyStrongerLaxatives() {
+  if (farts >= 1000 && !strongerLaxatives) {
+    farts -= 1000;
+    fpcMultiplier *= 2;
+    strongerLaxatives = true;
+    document.getElementById("upgradeStrongerLaxatives").remove();
+    update();
+  }
+}
+
+function buyEvenStrongerLaxatives() {
+  if (farts >= 1000000 && !evenStrongerLaxatives) {
+    farts -= 1000000;
+    fpcMultiplier *= 5;
+    evenStrongerLaxatives = true;
+    document.getElementById("upgradeEvenStrongerLaxatives").remove();
+    update();
+  }
+}
+
+function buyMoreIngredients() {
   if (farts >= 2500 && !moreIngredients) {
     farts -= 2500;
     burritoMultiplier = 2;
     moreIngredients = true;
-    document.getElementById("upgradeBurritoBtn").remove();
+    document.getElementById("upgradeMoreIngredients").remove();
     update();
   }
 }
-function buyToiletUpgrade() {
+function buyImprovedSeats() {
   if (farts >= 250000 && !improvedSeats) {
     farts -= 250000;
     toiletMultiplier = 2;
     improvedSeats = true;
-    document.getElementById("upgradeToiletBtn").remove();
+    document.getElementById("upgradeImprovedSeats").remove();
     update();
   }
 }
@@ -175,6 +198,16 @@ function buyDoubleFlush() {
     bathroomMultiplier = 2;
     doubleFlush = true;
     document.getElementById("upgradeDoubleFlush").remove();
+    update();
+  }
+}
+
+function buyBetterTrucks() {
+  if (farts >= 2000000 && !betterTrucks) {
+    farts -= 2000000;
+    tacoStandsMultiplier = 2;
+    betterTrucks = true;
+    document.getElementById("upgradeBetterTrucks").remove();
     update();
   }
 }
@@ -321,18 +354,28 @@ async function rec() {
   timePlayed += 1; // Increment time played every second
 
   // Check for upgrades
+  if (totalFarts >= 1000 && !strongerLaxatives) {
+    document.getElementById("upgradeStrongerLaxatives").classList.remove("hidden");
+  }
+  if (totalFarts >= 1000000 && !evenStrongerLaxatives) {
+    document.getElementById("upgradeEvenStrongerLaxatives").classList.remove("hidden");
+  }
   if (totalFarts >= 2500 && !moreIngredients) {
-    document.getElementById("upgradeBurritoBtn").classList.remove("hidden");
+    document.getElementById("upgradeMoreIngredients").classList.remove("hidden");
   }
   if (totalFarts >= 250000 && !improvedSeats) {
-    document.getElementById("upgradeToiletBtn").classList.remove("hidden");
+    document.getElementById("upgradeImprovedSeats").classList.remove("hidden");
   }
   if (totalFarts >= 1000000 && !doubleFlush) {
     document.getElementById("upgradeDoubleFlush").classList.remove("hidden");
   }
+  if (totalFarts >= 2000000 && !betterTrucks) {
+    document.getElementById("upgradeBetterTrucks").classList.remove("hidden");
+  }
   if (totalFarts >= 5000000 && !conveyorBelt) {
     document.getElementById("upgradeConveyorBelt").classList.remove("hidden");
   }
+  
 
   update(); // Update the UI
   requestAnimationFrame(rec); // Call rec again for the next second
@@ -460,6 +503,7 @@ function saveGame() {
     moreIngredients,
     improvedSeats,
     doubleFlush,
+    betterTrucks,
     conveyorBelt,
     globalProductionMultiplier,
     passiveProductionMultiplier,
@@ -509,6 +553,7 @@ function loadGame() {
   moreIngredients = data.moreIngredients ?? moreIngredients;
   improvedSeats = data.improvedSeats ?? improvedSeats;
   doubleFlush = data.doubleFlush ?? doubleFlush;
+  betterTrucks = data.betterTrucks ?? betterTrucks;
   conveyorBelt = data.conveyorBelt ?? conveyorBelt;
   globalProductionMultiplier = data.globalProductionMultiplier ?? globalProductionMultiplier;
   passiveProductionMultiplier = data.passiveProductionMultiplier ?? passiveProductionMultiplier;
@@ -554,6 +599,7 @@ window.addEventListener('DOMContentLoaded', () => {
       moreIngredients = false;
       improvedSeats = false;
       doubleFlush = false;
+      betterTrucks = false;
       conveyorBelt = false;
       fpc = 1;
       burrito = 0;
