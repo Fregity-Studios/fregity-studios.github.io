@@ -55,6 +55,7 @@ let fartFactoriesMultiplier = 1;
 function update() {
   document.getElementById('farts').innerHTML = "Farts: " + formatNumber(farts).toString();
   fps = ((getProductionAmount("burrito") + getProductionAmount("toilet") + getProductionAmount("bathroom") + getProductionAmount("tacoStand") + getProductionAmount("fartFactory")) * globalProductionMultiplier);
+  fpc = (getProductionAmount("fpc") * globalProductionMultiplier)
   document.getElementById('fpc').innerHTML = "Farts per Click: " + formatNumber(fpc); // Update FPC display
   document.getElementById('fps').innerHTML = "Farts per Second: " + formatNumber(fps); // Update FPS display
   document.getElementById('buyFpcBtn').innerText = `Buy Laxatives (${formatNumber(costOfFpc)} farts)`;
@@ -83,7 +84,7 @@ function getProductionAmount(which) {
   if (which === "burrito") { // if burrito is pressd 
     return Math.floor(1 * (burritosBought * burritoMultiplier * passiveProductionMultiplier)); // return burrito bought * burrito multiplier
   } else if (which === "fpc") { // if fpc is pressed 
-    return Math.floor(1 * ((fpcBought + 1) * fpcMultiplier * clickProductionMultiplier)); // return fpc bought * fpc multiplier
+    return Math.floor(1 * ((fpcBought + 1) * fpcMultiplier)); // return fpc bought * fpc multiplier
   } else if (which === "toilet") { // if toilet is pressed 
     return Math.floor(100 * (toiletsBought * toiletMultiplier * passiveProductionMultiplier)); // return toilets bought * toilet multiplier
   } else if (which === "bathroom") { // if bathroom is pressed
@@ -156,7 +157,7 @@ function buyFartFactory() {
 function buyStrongerLaxatives() {
   if (farts >= 1000 && !strongerLaxatives) {
     farts -= 1000;
-    fpcMultiplier *= 2;
+    fpcMultiplier *= 5;
     strongerLaxatives = true;
     document.getElementById("upgradeStrongerLaxatives").remove();
     update();
@@ -500,6 +501,8 @@ function saveGame() {
     costOfBathroom,
     costOfTacoStands,
     costOfFartFactories,
+    strongerLaxatives,
+    evenStrongerLaxatives,
     moreIngredients,
     improvedSeats,
     doubleFlush,
@@ -550,6 +553,8 @@ function loadGame() {
   costOfBathroom = data.costOfBathroom ?? costOfBathroom;
   costOfTacoStands = data.costOfTacoStands ?? costOfTacoStands;
   costOfFartFactories = data.costOfFartFactories ?? costOfFartFactories;
+  strongerLaxatives = data.strongerLaxatives ?? strongerLaxatives;
+  evenStrongerLaxatives = data.evenStrongerLaxatives ?? evenStrongerLaxatives;
   moreIngredients = data.moreIngredients ?? moreIngredients;
   improvedSeats = data.improvedSeats ?? improvedSeats;
   doubleFlush = data.doubleFlush ?? doubleFlush;
@@ -596,6 +601,8 @@ window.addEventListener('DOMContentLoaded', () => {
       bathroomsBought = 0;
       tacoStandsBought = 0;
       fartFactoriesBought = 0;
+      strongerLaxatives = false;
+      evenStrongerLaxatives = false;
       moreIngredients = false;
       improvedSeats = false;
       doubleFlush = false;
