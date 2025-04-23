@@ -65,4 +65,4 @@ Prox - v0.6.1 squashed some bugs
 
 Nick - v0.6.2 fixed bug with fart factory not giving any fps
 
-Nick - v0.7.0 added 3 new upgrades
+Nick - v0.7.0 added 5 new upgrades

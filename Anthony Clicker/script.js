@@ -16,6 +16,8 @@ let tacoStandsBought = 0;
 let fartFactoriesBought = 0;
 let strongerLaxatives = false;
 let evenStrongerLaxatives = false;
+let superStrongLaxatives = false;
+let ultraStrongLaxatives = false;
 let moreIngredients = false;
 let improvedSeats = false;
 let doubleFlush = false;
@@ -157,7 +159,7 @@ function buyFartFactory() {
 function buyStrongerLaxatives() {
   if (farts >= 1000 && !strongerLaxatives) {
     farts -= 1000;
-    fpcMultiplier *= 5;
+    fpcMultiplier *= 2;
     strongerLaxatives = true;
     document.getElementById("upgradeStrongerLaxatives").remove();
     update();
@@ -170,6 +172,26 @@ function buyEvenStrongerLaxatives() {
     fpcMultiplier *= 5;
     evenStrongerLaxatives = true;
     document.getElementById("upgradeEvenStrongerLaxatives").remove();
+    update();
+  }
+}
+
+function buySuperStrongLaxatives() {
+  if (farts >= 10000000 && !superStrongLaxatives) {
+    farts -= 10000000;
+    fpcMultiplier *= 10;
+    superStrongLaxatives = true;
+    document.getElementById("upgradeSuperStrongLaxatives").remove();
+    update();
+  }
+}
+
+function buyUltraStrongLaxatives() {
+  if (farts >= 1000000000 && !ultraStrongLaxatives) {
+    farts -= 1000000000;
+    fpcMultiplier *= 100;
+    ultraStrongLaxatives = true;
+    document.getElementById("upgradeUltraStrongLaxatives").remove();
     update();
   }
 }
@@ -361,6 +383,12 @@ async function rec() {
   if (totalFarts >= 1000000 && !evenStrongerLaxatives) {
     document.getElementById("upgradeEvenStrongerLaxatives").classList.remove("hidden");
   }
+  if (totalFarts >= 10000000 && !superStrongLaxatives) {
+    document.getElementById("upgradeSuperStrongLaxatives").classList.remove("hidden");
+  }
+  if (totalFarts >= 1000000000 && !ultraStrongLaxatives) {
+    document.getElementById("upgradeUltraStrongLaxatives").classList.remove("hidden");
+  }
   if (totalFarts >= 2500 && !moreIngredients) {
     document.getElementById("upgradeMoreIngredients").classList.remove("hidden");
   }
@@ -503,6 +531,8 @@ function saveGame() {
     costOfFartFactories,
     strongerLaxatives,
     evenStrongerLaxatives,
+    superStrongLaxatives,
+    ultraStrongLaxatives,
     moreIngredients,
     improvedSeats,
     doubleFlush,
@@ -510,7 +540,7 @@ function saveGame() {
     conveyorBelt,
     globalProductionMultiplier,
     passiveProductionMultiplier,
-    clickProductionMultiplier,
+    fpcMultiplier,
     burritoMultiplier,
     toiletMultiplier,
     bathroomMultiplier,
@@ -555,6 +585,8 @@ function loadGame() {
   costOfFartFactories = data.costOfFartFactories ?? costOfFartFactories;
   strongerLaxatives = data.strongerLaxatives ?? strongerLaxatives;
   evenStrongerLaxatives = data.evenStrongerLaxatives ?? evenStrongerLaxatives;
+  superStrongLaxatives = data.superStrongLaxatives ?? superStrongLaxatives;
+  ultraStrongLaxatives = data.ultraStrongLaxatives ?? ultraStrongLaxatives;
   moreIngredients = data.moreIngredients ?? moreIngredients;
   improvedSeats = data.improvedSeats ?? improvedSeats;
   doubleFlush = data.doubleFlush ?? doubleFlush;
@@ -562,7 +594,7 @@ function loadGame() {
   conveyorBelt = data.conveyorBelt ?? conveyorBelt;
   globalProductionMultiplier = data.globalProductionMultiplier ?? globalProductionMultiplier;
   passiveProductionMultiplier = data.passiveProductionMultiplier ?? passiveProductionMultiplier;
-  clickProductionMultiplier = data.clickProductionMultiplier ?? clickProductionMultiplier;
+  fpcMultiplier = data.fpcMultiplier ?? fpcMultiplier;
   burritoMultiplier = data.burritoMultiplier ?? burritoMultiplier;
   toiletMultiplier = data.toiletMultiplier ?? toiletMultiplier;
   bathroomMultiplier = data.bathroomMultiplier ?? bathroomMultiplier;
@@ -603,6 +635,8 @@ window.addEventListener('DOMContentLoaded', () => {
       fartFactoriesBought = 0;
       strongerLaxatives = false;
       evenStrongerLaxatives = false;
+      superStrongLaxatives = false;
+      ultraStrongLaxatives = false;
       moreIngredients = false;
       improvedSeats = false;
       doubleFlush = false;
@@ -622,7 +656,6 @@ window.addEventListener('DOMContentLoaded', () => {
       fartFactories = 0;
       costOfFartFactories = 1000000;
       globalProductionMultiplier = 1;
-      clickProductionMultiplier = 1;
       passiveProductionMultiplier = 1;
       fpcMultiplier = 1;
       burritoMultiplier = 1;
