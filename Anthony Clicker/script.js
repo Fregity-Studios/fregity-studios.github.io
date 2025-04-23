@@ -17,6 +17,7 @@ let fartFactoriesBought = 0;
 let moreIngredients = false;
 let improvedSeats = false;
 let doubleFlush = false;
+let betterTrucks = false;
 let conveyorBelt = false;
 
 let burrito = 0;
@@ -51,7 +52,7 @@ let fartFactoriesMultiplier = 1;
 // updates ui of current values
 function update() {
   document.getElementById('farts').innerHTML = "Farts: " + formatNumber(farts).toString();
-  fps = ((getProductionAmount("burrito") + getProductionAmount("toilet") + getProductionAmount("bathroom") + getProductionAmount("tacoStand")) + getProductionAmount("fartFactory") * globalProductionMultiplier);
+  fps = ((getProductionAmount("burrito") + getProductionAmount("toilet") + getProductionAmount("bathroom") + getProductionAmount("tacoStand") + getProductionAmount("fartFactory")) * globalProductionMultiplier);
   document.getElementById('fpc').innerHTML = "Farts per Click: " + formatNumber(fpc); // Update FPC display
   document.getElementById('fps').innerHTML = "Farts per Second: " + formatNumber(fps); // Update FPS display
   document.getElementById('buyFpcBtn').innerText = `Buy Laxatives (${formatNumber(costOfFpc)} farts)`;
@@ -312,7 +313,7 @@ async function rec() {
   await new Promise(resolve => setTimeout(resolve, 1000));
 
   // Calculate fps based on current production amounts
-  let fps = (getProductionAmount("burrito") + getProductionAmount("toilet") + getProductionAmount("bathroom") + getProductionAmount("tacoStand")) * globalProductionMultiplier;
+  let fps = (getProductionAmount("burrito") + getProductionAmount("toilet") + getProductionAmount("bathroom") + getProductionAmount("tacoStand") + getProductionAmount("fartFactory")) * globalProductionMultiplier;
 
   // Update farts with fps
   farts += fps; // This should correctly add fps to farts
