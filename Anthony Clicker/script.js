@@ -189,7 +189,7 @@ function buySuperStrongLaxatives() {
 function buyUltraStrongLaxatives() {
   if (farts >= 1000000000 && !ultraStrongLaxatives) {
     farts -= 1000000000;
-    fpcMultiplier *= 100;
+    fpcMultiplier *= 50;
     ultraStrongLaxatives = true;
     document.getElementById("upgradeUltraStrongLaxatives").remove();
     update();
