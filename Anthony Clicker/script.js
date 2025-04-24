@@ -264,8 +264,8 @@ async function moreU() {
   icon.style.transform = 'scale(1)';
   
   // Update farts based on farts per click (fpc)
-  farts += getProductionAmount("fpc"); // Ensure this returns the correct value
-  totalFarts += getProductionAmount("fpc"); // Update total farts
+  farts += (getProductionAmount("fpc") * globalProductionMultiplier); // Ensure this returns the correct value
+  totalFarts += (getProductionAmount("fpc") * globalProductionMultiplier); // Update total farts
   update(); // Update the UI
 }
 // checks to see if sounds are muted
