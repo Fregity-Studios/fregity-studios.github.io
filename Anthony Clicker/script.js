@@ -627,6 +627,8 @@ function saveGame() {
     bathroomMultiplier,
     tacoStandsMultiplier,
     fartFactoriesMultiplier,
+    rebirths,
+    rebirthBonus,
   };
   localStorage.setItem('fartGameSave', JSON.stringify(saveData));
   const msg = document.getElementById('saveMessage');
@@ -681,6 +683,8 @@ function loadGame() {
   bathroomMultiplier = data.bathroomMultiplier ?? bathroomMultiplier;
   tacoStandsMultiplier = data.tacoStandsMultiplier ?? tacoStandsMultiplier;
   fartFactoriesMultiplier = data.fartFactoriesMultiplier ?? fartFactoriesMultiplier;
+  rebirths = data.rebirths ?? rebirths;
+  rebirthBonus = data.rebirthBonus ?? rebirthBonus;
 
   update();
 }
