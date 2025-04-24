@@ -357,7 +357,7 @@ const imageSources = [
   "Pictures/anthony.jpg",
   "Pictures/anthony2.jpg",
   "Pictures/anthony3.jpg",
-  "Pictures/anthony4.jpg"
+  "Pictures/anthony4.jpg",
 ];
 function cycleImage() {
   currentImageIndex = (currentImageIndex + 1) % imageSources.length;
