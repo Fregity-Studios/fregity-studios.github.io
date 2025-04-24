@@ -1,3 +1,6 @@
+// TODO: debug rebirth function -- got around it for now but for some reason calling update() function doesnt work and so reloading 
+// is the only way to make it work correctly 
+
 // defines variables 
 let startTime = Date.now();
 let timePlayed = 0; // in seconds
@@ -23,6 +26,8 @@ let improvedSeats = false;
 let doubleFlush = false;
 let betterTrucks = false;
 let conveyorBelt = false;
+let rebirthBonus = 2
+let rebirths = 0
 
 let burrito = 0;
 let costOfBurrito = 10;
@@ -161,7 +166,7 @@ function buyStrongerLaxatives() {
     farts -= 1000;
     fpcMultiplier *= 2;
     strongerLaxatives = true;
-    document.getElementById("upgradeStrongerLaxatives").remove();
+    document.getElementById("upgradeStrongerLaxatives").classList.add("hidden");
     update();
   }
 }
@@ -171,7 +176,7 @@ function buyEvenStrongerLaxatives() {
     farts -= 1000000;
     fpcMultiplier *= 5;
     evenStrongerLaxatives = true;
-    document.getElementById("upgradeEvenStrongerLaxatives").remove();
+    document.getElementById("upgradeEvenStrongerLaxatives").classList.add("hidden");
     update();
   }
 }
@@ -181,7 +186,7 @@ function buySuperStrongLaxatives() {
     farts -= 10000000;
     fpcMultiplier *= 10;
     superStrongLaxatives = true;
-    document.getElementById("upgradeSuperStrongLaxatives").remove();
+    document.getElementById("upgradeSuperStrongLaxatives").classList.add("hidden");
     update();
   }
 }
@@ -191,7 +196,7 @@ function buyUltraStrongLaxatives() {
     farts -= 1000000000;
     fpcMultiplier *= 50;
     ultraStrongLaxatives = true;
-    document.getElementById("upgradeUltraStrongLaxatives").remove();
+    document.getElementById("upgradeUltraStrongLaxatives").classList.add("hidden");
     update();
   }
 }
@@ -201,7 +206,7 @@ function buyMoreIngredients() {
     farts -= 2500;
     burritoMultiplier = 2;
     moreIngredients = true;
-    document.getElementById("upgradeMoreIngredients").remove();
+    document.getElementById("upgradeMoreIngredients").classList.add("hidden");
     update();
   }
 }
@@ -210,7 +215,7 @@ function buyImprovedSeats() {
     farts -= 250000;
     toiletMultiplier = 2;
     improvedSeats = true;
-    document.getElementById("upgradeImprovedSeats").remove();
+    document.getElementById("upgradeImprovedSeats").classList.add("hidden");
     update();
   }
 }
@@ -220,7 +225,7 @@ function buyDoubleFlush() {
     farts -= 1000000;
     bathroomMultiplier = 2;
     doubleFlush = true;
-    document.getElementById("upgradeDoubleFlush").remove();
+    document.getElementById("upgradeDoubleFlush").classList.add("hidden");
     update();
   }
 }
@@ -230,7 +235,7 @@ function buyBetterTrucks() {
     farts -= 2000000;
     tacoStandsMultiplier = 2;
     betterTrucks = true;
-    document.getElementById("upgradeBetterTrucks").remove();
+    document.getElementById("upgradeBetterTrucks").classList.add("hidden");
     update();
   }
 }
@@ -240,10 +245,88 @@ function buyConveyorBelt() {
     farts -= 5000000;
     fartFactoriesMultiplier = 2;
     conveyorBelt = true;
-    document.getElementById("upgradeConveyorBelt").remove();
+    document.getElementById("upgradeConveyorBelt").classList.add("hidden");
     update();
   }
 }
+
+function rebirth() {
+  // Check if the player can rebirth 
+  if (totalFarts >= 5000000000) { 
+    // Apply rebirth bonuses
+    globalProductionMultiplier *= rebirthBonus; // Increase production multiplier
+    rebirths++; // Increment the rebirth count
+
+    // Reset game variables
+    burrito = 0;
+    costOfBurrito = 10;
+    
+    fpc = 1;
+    costOfFpc = 10;
+    
+    toilets = 0;
+    costOfToilets = 10000;
+    
+    bathrooms = 0;
+    costOfBathroom = 25000;
+    
+    tacoStands = 0;
+    costOfTacoStands = 100000;
+    
+    fartFactories = 0;
+    costOfFartFactories = 1000000;
+    
+    clickProductionMultiplier = 1;
+    passiveProductionMultiplier = 1;
+    fpcMultiplier = 1;
+    burritoMultiplier = 1;
+    toiletMultiplier = 1;
+    bathroomMultiplier = 1;
+    tacoStandsMultiplier = 1;
+    fartFactoriesMultiplier = 1;
+
+    farts = 0;
+    totalFarts = 0;
+
+    fpcBought = 0;
+    burritosBought = 0;
+    toiletsBought = 0;
+    bathroomsBought = 0;
+    tacoStandsBought = 0;
+    fartFactoriesBought = 0;
+    strongerLaxatives = false;
+    evenStrongerLaxatives = false;
+    superStrongLaxatives = false;
+    ultraStrongLaxatives = false;
+    moreIngredients = false;
+    improvedSeats = false;
+    doubleFlush = false;
+    betterTrucks = false;
+    conveyorBelt = false;
+
+    // Update the UI
+    alert(`You have rebirthed! Total Rebirths: ${rebirths}`);
+    document.getElementById("upgradeConveyorBelt").classList.add("hidden");
+    document.getElementById("upgradeBetterTrucks").classList.add("hidden");
+    document.getElementById("upgradeDoubleFlush").classList.add("hidden");
+    document.getElementById("upgradeImprovedSeats").classList.add("hidden");
+    document.getElementById("upgradeMoreIngredients").classList.add("hidden");
+    document.getElementById("upgradeUltraStrongLaxatives").classList.add("hidden");
+    document.getElementById("upgradeSuperStrongLaxatives").classList.add("hidden");
+    document.getElementById("upgradeEvenStrongerLaxatives").classList.add("hidden");
+    document.getElementById("upgradeStrongerLaxatives").classList.add("hidden");
+    document.getElementById("buyFartFactoryBtn").classList.add("hidden");
+    document.getElementById("buyTacoStandBtn").classList.add("hidden");
+    document.getElementById("buyBathroomBtn").classList.add("hidden");
+    document.getElementById("buyToiletBtn").classList.add("hidden");
+    location.reload();
+    saveGame();
+
+  }
+}
+
+
+
 
 // making anthony jiggle
 async function moreU() {
@@ -546,6 +629,8 @@ function saveGame() {
     bathroomMultiplier,
     tacoStandsMultiplier,
     fartFactoriesMultiplier,
+    rebirths,
+    rebirthBonus,
   };
   localStorage.setItem('fartGameSave', JSON.stringify(saveData));
   const msg = document.getElementById('saveMessage');
@@ -600,6 +685,8 @@ function loadGame() {
   bathroomMultiplier = data.bathroomMultiplier ?? bathroomMultiplier;
   tacoStandsMultiplier = data.tacoStandsMultiplier ?? tacoStandsMultiplier;
   fartFactoriesMultiplier = data.fartFactoriesMultiplier ?? fartFactoriesMultiplier;
+  rebirths = data.rebirths ?? rebirths;
+  rebirthBonus = data.rebirthBonus ?? rebirthBonus;
 
   update();
 }
@@ -612,6 +699,7 @@ setInterval(saveGame, 30000); // Auto-save every 30 sec
 window.addEventListener('DOMContentLoaded', () => {
   document.getElementById('goldenBall').addEventListener('click', activateGoldenBall);
   document.getElementById('clickericon').addEventListener('click', moreU);
+  document.getElementById('upgradeRebirth').addEventListener('click', rebirth);
   document.getElementById('muteButton').addEventListener('click', () => {
     effectsMuted = !effectsMuted;
     document.getElementById('muteButton').textContent = effectsMuted ? '🔇 Unmute Farts' : '🔊 Mute Farts';
