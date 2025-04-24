@@ -165,7 +165,7 @@ function buyStrongerLaxatives() {
     farts -= 1000;
     fpcMultiplier *= 2;
     strongerLaxatives = true;
-    document.getElementById("upgradeStrongerLaxatives").remove();
+    document.getElementById("upgradeStrongerLaxatives").classList.add("hidden");
     update();
   }
 }
@@ -175,7 +175,7 @@ function buyEvenStrongerLaxatives() {
     farts -= 1000000;
     fpcMultiplier *= 5;
     evenStrongerLaxatives = true;
-    document.getElementById("upgradeEvenStrongerLaxatives").remove();
+    document.getElementById("upgradeEvenStrongerLaxatives").classList.add("hidden");
     update();
   }
 }
@@ -185,7 +185,7 @@ function buySuperStrongLaxatives() {
     farts -= 10000000;
     fpcMultiplier *= 10;
     superStrongLaxatives = true;
-    document.getElementById("upgradeSuperStrongLaxatives").remove();
+    document.getElementById("upgradeSuperStrongLaxatives").classList.add("hidden");
     update();
   }
 }
@@ -195,7 +195,7 @@ function buyUltraStrongLaxatives() {
     farts -= 1000000000;
     fpcMultiplier *= 50;
     ultraStrongLaxatives = true;
-    document.getElementById("upgradeUltraStrongLaxatives").remove();
+    document.getElementById("upgradeUltraStrongLaxatives").classList.add("hidden");
     update();
   }
 }
@@ -205,7 +205,7 @@ function buyMoreIngredients() {
     farts -= 2500;
     burritoMultiplier = 2;
     moreIngredients = true;
-    document.getElementById("upgradeMoreIngredients").remove();
+    document.getElementById("upgradeMoreIngredients").classList.add("hidden");
     update();
   }
 }
@@ -214,7 +214,7 @@ function buyImprovedSeats() {
     farts -= 250000;
     toiletMultiplier = 2;
     improvedSeats = true;
-    document.getElementById("upgradeImprovedSeats").remove();
+    document.getElementById("upgradeImprovedSeats").classList.add("hidden");
     update();
   }
 }
@@ -224,7 +224,7 @@ function buyDoubleFlush() {
     farts -= 1000000;
     bathroomMultiplier = 2;
     doubleFlush = true;
-    document.getElementById("upgradeDoubleFlush").remove();
+    document.getElementById("upgradeDoubleFlush").classList.add("hidden");
     update();
   }
 }
@@ -234,7 +234,7 @@ function buyBetterTrucks() {
     farts -= 2000000;
     tacoStandsMultiplier = 2;
     betterTrucks = true;
-    document.getElementById("upgradeBetterTrucks").remove();
+    document.getElementById("upgradeBetterTrucks").classList.add("hidden");
     update();
   }
 }
@@ -244,7 +244,7 @@ function buyConveyorBelt() {
     farts -= 5000000;
     fartFactoriesMultiplier = 2;
     conveyorBelt = true;
-    document.getElementById("upgradeConveyorBelt").remove();
+    document.getElementById("upgradeConveyorBelt").classList.add("hidden");
     update();
   }
 }
@@ -304,18 +304,21 @@ function rebirth() {
     conveyorBelt = false;
 
     // Update the UI
-    /* It seems that the .remove command successfully removes the upgrade buttons, but doesnt allow them to re-appear when player reaches 
-    the correct point */
     alert(`You have rebirthed! Total Rebirths: ${rebirths}`);
-    document.getElementById("upgradeConveyorBelt").remove();
-    document.getElementById("upgradeBetterTrucks").remove();
-    document.getElementById("upgradeDoubleFlush").remove();
-    document.getElementById("upgradeImprovedSeats").remove();
-    document.getElementById("upgradeMoreIngredients").remove();
-    document.getElementById("upgradeUltraStrongLaxatives").remove();
-    document.getElementById("upgradeSuperStrongLaxatives").remove();
-    document.getElementById("upgradeEvenStrongerLaxatives").remove();
-    document.getElementById("upgradeStrongerLaxatives").remove();
+    document.getElementById("upgradeConveyorBelt").classList.add("hidden");
+    document.getElementById("upgradeBetterTrucks").classList.add("hidden");
+    document.getElementById("upgradeDoubleFlush").classList.add("hidden");
+    document.getElementById("upgradeImprovedSeats").classList.add("hidden");
+    document.getElementById("upgradeMoreIngredients").classList.add("hidden");
+    document.getElementById("upgradeUltraStrongLaxatives").classList.add("hidden");
+    document.getElementById("upgradeSuperStrongLaxatives").classList.add("hidden");
+    document.getElementById("upgradeEvenStrongerLaxatives").classList.add("hidden");
+    document.getElementById("upgradeStrongerLaxatives").classList.add("hidden");
+    document.getElementById("buyFartFactoryBtn").classList.add("hidden")
+    document.getElementById("buyTacoStandBtn").classList.add("hidden")
+    document.getElementById("buyBathroomBtn").classList.add("hidden")
+    document.getElementById("buyToiletBtn").classList.add("hidden")
+
     update();
 
   }
