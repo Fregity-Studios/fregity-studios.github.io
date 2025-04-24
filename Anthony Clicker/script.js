@@ -23,6 +23,8 @@ let improvedSeats = false;
 let doubleFlush = false;
 let betterTrucks = false;
 let conveyorBelt = false;
+let rebirthBonus = 2
+let rebirths = 0
 
 let burrito = 0;
 let costOfBurrito = 10;
@@ -244,6 +246,78 @@ function buyConveyorBelt() {
     update();
   }
 }
+
+function rebirth() {
+  // Check if the player can rebirth 
+  if (totalFarts >= 1) { 
+    // Apply rebirth bonuses
+    globalProductionMultiplier *= rebirthBonus; // Increase production multiplier
+    rebirths++; // Increment the rebirth count
+
+    // Reset game variables
+    burrito = 0;
+    costOfBurrito = 10;
+    
+    fpc = 1;
+    costOfFpc = 10;
+    
+    toilets = 0;
+    costOfToilets = 10000;
+    
+    bathrooms = 0;
+    costOfBathroom = 25000;
+    
+    tacoStands = 0;
+    costOfTacoStands = 100000;
+    
+    fartFactories = 0;
+    costOfFartFactories = 1000000;
+    
+    clickProductionMultiplier = 1;
+    passiveProductionMultiplier = 1;
+    fpcMultiplier = 1;
+    burritoMultiplier = 1;
+    toiletMultiplier = 1;
+    bathroomMultiplier = 1;
+    tacoStandsMultiplier = 1;
+    fartFactoriesMultiplier = 1;
+
+    farts = 0;
+    totalFarts = 0;
+
+    fpcBought = 0;
+    burritosBought = 0;
+    toiletsBought = 0;
+    bathroomsBought = 0;
+    tacoStandsBought = 0;
+    fartFactoriesBought = 0;
+    strongerLaxatives = false;
+    evenStrongerLaxatives = false;
+    superStrongLaxatives = false;
+    ultraStrongLaxatives = false;
+    moreIngredients = false;
+    improvedSeats = false;
+    doubleFlush = false;
+    betterTrucks = false;
+    conveyorBelt = false;
+
+    // Update the UI
+    alert(`You have rebirthed! Total Rebirths: ${rebirths}`);
+    document.getElementById("upgradeConveyorBelt").remove();
+    document.getElementById("upgradeBetterTrucks").remove();
+    document.getElementById("upgradeDoubleFlush").remove();
+    document.getElementById("upgradeImprovedSeats").remove();
+    document.getElementById("upgradeMoreIngredients").remove();
+    document.getElementById("upgradeUltraStrongLaxatives").remove();
+    document.getElementById("upgradeSuperStrongLaxatives").remove();
+    document.getElementById("upgradeEvenStrongerLaxatives").remove();
+    document.getElementById("upgradeStrongerLaxatives").remove();
+    update();
+
+  }
+}
+
+
 
 // making anthony jiggle
 async function moreU() {
@@ -612,6 +686,7 @@ setInterval(saveGame, 30000); // Auto-save every 30 sec
 window.addEventListener('DOMContentLoaded', () => {
   document.getElementById('goldenBall').addEventListener('click', activateGoldenBall);
   document.getElementById('clickericon').addEventListener('click', moreU);
+  document.getElementById('upgradeRebirth').addEventListener('click', rebirth);
   document.getElementById('muteButton').addEventListener('click', () => {
     effectsMuted = !effectsMuted;
     document.getElementById('muteButton').textContent = effectsMuted ? '🔇 Unmute Farts' : '🔊 Mute Farts';
