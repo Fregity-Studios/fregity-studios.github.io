@@ -252,7 +252,7 @@ function buyConveyorBelt() {
 
 function rebirth() {
   // Check if the player can rebirth 
-  if (totalFarts >= 1) { 
+  if (totalFarts >= 5000000000) { 
     // Apply rebirth bonuses
     globalProductionMultiplier *= rebirthBonus; // Increase production multiplier
     rebirths++; // Increment the rebirth count
