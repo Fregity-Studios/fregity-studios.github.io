@@ -1,3 +1,5 @@
+// TODO: debug rebirth function, add it to save function, and finish writing rebirth function
+
 // defines variables 
 let startTime = Date.now();
 let timePlayed = 0; // in seconds
@@ -302,6 +304,8 @@ function rebirth() {
     conveyorBelt = false;
 
     // Update the UI
+    /* It seems that the .remove command successfully removes the upgrade buttons, but doesnt allow them to re-appear when player reaches 
+    the correct point */
     alert(`You have rebirthed! Total Rebirths: ${rebirths}`);
     document.getElementById("upgradeConveyorBelt").remove();
     document.getElementById("upgradeBetterTrucks").remove();
