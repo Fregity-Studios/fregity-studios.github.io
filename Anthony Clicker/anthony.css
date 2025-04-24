@@ -31,6 +31,7 @@ button.styled {
   cursor: pointer;
   transition: transform 0.2s ease;
   font-size: 1.4rem;
+  margin: 5px 0;
 }
 button.styled:hover {
   transform: scale(1.1);
@@ -147,4 +148,19 @@ button.styled:hover {
   position: fixed;
   top: 82%;
   left: 10px;
+}
+
+#buildingWrapper { /* arrange buildings in a column */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px 0
+}
+
+
+.upgrades-Menu { /* arrange upgrades in a column */
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  margin: 10px 0; 
 }
