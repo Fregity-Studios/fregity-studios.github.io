@@ -1,4 +1,5 @@
-// TODO: debug rebirth function, add it to save function, and finish writing rebirth function
+// TODO: debug rebirth function -- got around it for now but for some reason calling update() function doesnt work and so reloading 
+// is the only way to make it work correctly 
 
 // defines variables 
 let startTime = Date.now();
@@ -314,15 +315,16 @@ function rebirth() {
     document.getElementById("upgradeSuperStrongLaxatives").classList.add("hidden");
     document.getElementById("upgradeEvenStrongerLaxatives").classList.add("hidden");
     document.getElementById("upgradeStrongerLaxatives").classList.add("hidden");
-    document.getElementById("buyFartFactoryBtn").classList.add("hidden")
-    document.getElementById("buyTacoStandBtn").classList.add("hidden")
-    document.getElementById("buyBathroomBtn").classList.add("hidden")
-    document.getElementById("buyToiletBtn").classList.add("hidden")
-
-    update();
+    document.getElementById("buyFartFactoryBtn").classList.add("hidden");
+    document.getElementById("buyTacoStandBtn").classList.add("hidden");
+    document.getElementById("buyBathroomBtn").classList.add("hidden");
+    document.getElementById("buyToiletBtn").classList.add("hidden");
+    location.reload();
+    saveGame();
 
   }
 }
+
 
 
 
