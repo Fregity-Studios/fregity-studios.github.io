@@ -88,18 +88,18 @@ function update() {
 
 // logic for upgrade buttons 
 function getProductionAmount(which) { 
-  if (which === "burrito") { // if burrito is pressd 
-    return Math.floor(1 * (burritosBought * burritoMultiplier * passiveProductionMultiplier)); // return burrito bought * burrito multiplier
-  } else if (which === "fpc") { // if fpc is pressed 
-    return Math.floor(1 * ((fpcBought + 1) * fpcMultiplier)); // return fpc bought * fpc multiplier
-  } else if (which === "toilet") { // if toilet is pressed 
-    return Math.floor(100 * (toiletsBought * toiletMultiplier * passiveProductionMultiplier)); // return toilets bought * toilet multiplier
-  } else if (which === "bathroom") { // if bathroom is pressed
-    return Math.floor(250 * (bathroomsBought * bathroomMultiplier * passiveProductionMultiplier));  // return bathrooms bought * bathroom multiplier
-  } else if (which === "tacoStand") { // if taco stand is pressed
-    return Math.floor(750 * (tacoStandsBought * tacoStandsMultiplier * passiveProductionMultiplier)); // return taco stands bought * taco stand multiplier
-  } else if (which === "fartFactory") { // if fart factory is pressed
-    return Math.floor(4000 * (fartFactoriesBought * fartFactoriesMultiplier * passiveProductionMultiplier)); // return fart factories * fart factory multiplier
+  if (which === "burrito") { 
+    return Math.floor(1 * (burritosBought * burritoMultiplier * passiveProductionMultiplier));
+  } else if (which === "fpc") { // 
+    return Math.floor(1 * ((fpcBought + 1) * fpcMultiplier)); 
+  } else if (which === "toilet") { 
+    return Math.floor(100 * (toiletsBought * toiletMultiplier * passiveProductionMultiplier)); 
+  } else if (which === "bathroom") { 
+    return Math.floor(250 * (bathroomsBought * bathroomMultiplier * passiveProductionMultiplier));  
+  } else if (which === "tacoStand") { 
+    return Math.floor(750 * (tacoStandsBought * tacoStandsMultiplier * passiveProductionMultiplier)); 
+  } else if (which === "fartFactory") { 
+    return Math.floor(4000 * (fartFactoriesBought * fartFactoriesMultiplier * passiveProductionMultiplier)); 
   }
   return 0; // fallback to prevent an error from being flagged 
 }
