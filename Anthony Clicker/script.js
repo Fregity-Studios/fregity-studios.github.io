@@ -204,7 +204,7 @@ function buyUltraStrongLaxatives() {
 function buyMoreIngredients() {
   if (farts >= 2500 && !moreIngredients) {
     farts -= 2500;
-    burritoMultiplier = 2;
+    burritoMultiplier *= 2;
     moreIngredients = true;
     document.getElementById("upgradeMoreIngredients").classList.add("hidden");
     update();
@@ -213,7 +213,7 @@ function buyMoreIngredients() {
 function buyImprovedSeats() {
   if (farts >= 250000 && !improvedSeats) {
     farts -= 250000;
-    toiletMultiplier = 2;
+    toiletMultiplier *= 2;
     improvedSeats = true;
     document.getElementById("upgradeImprovedSeats").classList.add("hidden");
     update();
@@ -223,7 +223,7 @@ function buyImprovedSeats() {
 function buyDoubleFlush() {
   if (farts >= 1000000 && !doubleFlush) {
     farts -= 1000000;
-    bathroomMultiplier = 2;
+    bathroomMultiplier *= 2;
     doubleFlush = true;
     document.getElementById("upgradeDoubleFlush").classList.add("hidden");
     update();
@@ -233,7 +233,7 @@ function buyDoubleFlush() {
 function buyBetterTrucks() {
   if (farts >= 2000000 && !betterTrucks) {
     farts -= 2000000;
-    tacoStandsMultiplier = 2;
+    tacoStandsMultiplier *= 2;
     betterTrucks = true;
     document.getElementById("upgradeBetterTrucks").classList.add("hidden");
     update();
@@ -243,7 +243,7 @@ function buyBetterTrucks() {
 function buyConveyorBelt() {
   if (farts >= 5000000 && !conveyorBelt) {
     farts -= 5000000;
-    fartFactoriesMultiplier = 2;
+    fartFactoriesMultiplier *= 2;
     conveyorBelt = true;
     document.getElementById("upgradeConveyorBelt").classList.add("hidden");
     update();
