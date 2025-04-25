@@ -566,16 +566,28 @@ function formatTime(seconds) {
 }
 // formatting numbers for display
 function formatNumber(num) {
-  if (num >= 1e30) return (num / 1e30).toFixed(2) + " decillion";
-  if (num >= 1e27) return (num / 1e37).toFixed(2) + " nonillion";
-  if (num >= 1e24) return (num / 1e24).toFixed(2) + " septillion";
-  if (num >= 1e21) return (num / 1e21).toFixed(2) + " sextillion";
-  if (num >= 1e18) return (num / 1e18).toFixed(2) + " quintillion";
-  if (num >= 1e15) return (num / 1e15).toFixed(2) + " quadrillion";
-  if (num >= 1e12) return (num / 1e12).toFixed(2) + " trillion";
-  if (num >= 1e9) return (num / 1e9).toFixed(2) + " billion";
-  if (num >= 1e6) return (num / 1e6).toFixed(2) + " million";
-  if (num >= 1e3) return (num / 1e3).toFixed(2) + "k";
+  if (num >=1e66) return num.toExponential();
+  if (num >= 1e63) return (num / 1e63).toFixed(3) + " vigintillion";
+  if (num >= 1e60) return (num / 1e60).toFixed(3) + " novemdecillion";
+  if (num >= 1e57) return (num / 1e57).toFixed(3) + " octodecillion";
+  if (num >= 1e54) return (num / 1e54).toFixed(3) + " septendecillion";
+  if (num >= 1e51) return (num / 1e51).toFixed(3) + " sexdecillion";
+  if (num >= 1e48) return (num / 1e48).toFixed(3) + " quindecillion";
+  if (num >= 1e45) return (num / 1e45).toFixed(3) + " quattuordecillion";
+  if (num >= 1e42) return (num / 1e42).toFixed(3) + " tredecillion";
+  if (num >= 1e39) return (num / 1e39).toFixed(3) + " duodecillion";
+  if (num >= 1e36) return (num / 1e36).toFixed(3) + " undecillion";
+  if (num >= 1e33) return (num / 1e33).toFixed(3) + " decillion";
+  if (num >= 1e30) return (num / 1e30).toFixed(3) + " nonillion";
+  if (num >= 1e27) return (num / 1e27).toFixed(3) + " octillion";
+  if (num >= 1e24) return (num / 1e24).toFixed(3) + " septillion";
+  if (num >= 1e21) return (num / 1e21).toFixed(3) + " sextillion";
+  if (num >= 1e18) return (num / 1e18).toFixed(3) + " quintillion";
+  if (num >= 1e15) return (num / 1e15).toFixed(3) + " quadrillion";
+  if (num >= 1e12) return (num / 1e12).toFixed(3) + " trillion";
+  if (num >= 1e9) return (num / 1e9).toFixed(3) + " billion";
+  if (num >= 1e6) return (num / 1e6).toFixed(3) + " million";
+  if (num >= 1e3) return (num / 1e3).toFixed(3) + "k";
   return Math.floor(num);
 }
 
