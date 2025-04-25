@@ -90,7 +90,7 @@ function update() {
 function getProductionAmount(which) { 
   if (which === "burrito") { 
     return Math.floor(1 * (burritosBought * burritoMultiplier * passiveProductionMultiplier));
-  } else if (which === "fpc") { // 
+  } else if (which === "fpc") {  
     return Math.floor(1 * ((fpcBought + 1) * fpcMultiplier)); 
   } else if (which === "toilet") { 
     return Math.floor(100 * (toiletsBought * toiletMultiplier * passiveProductionMultiplier)); 
