@@ -59,6 +59,16 @@ let bathroomMultiplier = 1;
 let tacoStandsMultiplier = 1;
 let fartFactoriesMultiplier = 1;
 
+let baseCostsMultiplier = 1;
+let baseCosts = {
+  burrito: 10,
+  fpc: 10,
+  toilets: 10000,
+  bathrooms: 25000,
+  tacoStands: 100000,
+  fartFactories: 1000000,
+};
+
 
 // updates ui of current values
 function update() {
@@ -262,22 +272,28 @@ function rebirth() {
 
     // Reset game variables
     burrito = 0;
-    costOfBurrito = 10;
+    baseCosts.burrito *= 3;
+    costOfBurrito = baseCosts.burrito;
     
     fpc = 1;
-    costOfFpc = 10;
+    baseCosts.fpc *= 3;
+    costOfFpc = baseCosts.fpc;
     
     toilets = 0;
-    costOfToilets = 10000;
+    baseCosts.toilets *= 3;
+    costOfToilets = baseCosts.toilets;
     
     bathrooms = 0;
-    costOfBathroom = 25000;
+    baseCosts.bathrooms *= 3;
+    costOfBathroom = baseCosts.bathrooms;
     
     tacoStands = 0;
-    costOfTacoStands = 100000;
+    baseCosts.tacoStands *= 3;
+    costOfTacoStands = baseCosts.tacoStands;
     
     fartFactories = 0;
-    costOfFartFactories = 1000000;
+    baseCosts.fartFactories *= 3;
+    costOfFartFactories = baseCosts.fartFactories;
     
     clickProductionMultiplier = 1;
     passiveProductionMultiplier = 1;
@@ -324,7 +340,7 @@ function rebirth() {
     document.getElementById("buyToiletBtn").classList.add("hidden");
 
     rebirthCost *= 3;
-    alert(`Rebirth Cost: ${rebirthCost}`);
+
 
     location.reload();
     saveGame();
@@ -546,22 +562,22 @@ function getBuildingCost(baseCost, amountOwned, multiplier = 1.1) { // Scales by
 function increasePrice(which) {
   if (which === "burrito") {
     burritosBought++;
-    return getBuildingCost(10, burritosBought, 1.01);
+    return getBuildingCost(baseCosts.burrito, burritosBought, 1.01);
   } else if (which === "fpc") {
     fpcBought++;
-    return getBuildingCost(10, fpcBought, 1.05);
+    return getBuildingCost(baseCosts.fpc, fpcBought, 1.05);
   } else if (which === "toilet") {
     toiletsBought++;
-    return getBuildingCost(10000, toiletsBought, 1.01);
+    return getBuildingCost(baseCosts.toilets, toiletsBought, 1.01);
   } else if (which == "bathroom") {
     bathroomsBought++;
-    return getBuildingCost(25000, bathroomsBought, 1.01)
+    return getBuildingCost(baseCosts.bathrooms, bathroomsBought, 1.01)
   } else if (which == "tacoStand") {
     tacoStandsBought++;
-    return getBuildingCost(100000, tacoStandsBought, 1.01)
+    return getBuildingCost(baseCosts.tacoStands, tacoStandsBought, 1.01)
   } else if (which == "fartFactory") {
     fartFactoriesBought++;
-    return getBuildingCost(1000000, fartFactoriesBought, 1.01)
+    return getBuildingCost(baseCosts.fartFactories, fartFactoriesBought, 1.01)
   }
 }
 // time saving function for time played
@@ -651,6 +667,8 @@ function saveGame() {
     rebirths,
     rebirthBonus,
     rebirthCost,
+    baseCosts,
+    baseCostsMultiplier,
   };
   localStorage.setItem('fartGameSave', JSON.stringify(saveData));
   const msg = document.getElementById('saveMessage');
@@ -708,6 +726,8 @@ function loadGame() {
   rebirths = data.rebirths ?? rebirths;
   rebirthBonus = data.rebirthBonus ?? rebirthBonus;
   rebirthCost = data.rebirthCost ?? rebirthCost;
+  baseCosts = data.baseCosts ?? baseCosts;
+  baseCostsMultiplier = data.baseCostsMultiplier ?? baseCostsMultiplier;
 
   update();
 }
