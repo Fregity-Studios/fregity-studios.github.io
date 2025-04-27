@@ -73,6 +73,7 @@ function update() {
   document.getElementById('buyBathroomBtn').innerText = `Buy Bathroom (${formatNumber(costOfBathroom)} farts)`;
   document.getElementById('buyTacoStandBtn').innerText = `Buy Taco Stand (${formatNumber(costOfTacoStands)} farts)`;
   document.getElementById('buyFartFactoryBtn').innerText = `Buy Fart Factory (${formatNumber(costOfFartFactories)} farts)`;
+  document.getElementById('upgradeRebirth').innerText = `Rebirth (${formatNumber(rebirthCost)})`
 
   function formatTime(seconds) {
     const hrs = Math.floor(seconds / 3600);
