@@ -47,6 +47,8 @@ let costOfTacoStands = 100000;
 let fartFactories = 0;
 let costOfFartFactories = 1000000;
 
+let rebirthCost = 15000000000;
+
 let globalProductionMultiplier = 1;
 let clickProductionMultiplier = 1;
 let passiveProductionMultiplier = 1;
@@ -252,7 +254,7 @@ function buyConveyorBelt() {
 
 function rebirth() {
   // Check if the player can rebirth 
-  if (totalFarts >= 5000000000) { 
+  if (totalFarts >= rebirthCost) { 
     // Apply rebirth bonuses
     globalProductionMultiplier *= rebirthBonus; // Increase production multiplier
     rebirths++; // Increment the rebirth count
@@ -319,6 +321,10 @@ function rebirth() {
     document.getElementById("buyTacoStandBtn").classList.add("hidden");
     document.getElementById("buyBathroomBtn").classList.add("hidden");
     document.getElementById("buyToiletBtn").classList.add("hidden");
+
+    rebirthCost *= 3;
+    alert(`Rebirth Cost: ${rebirthCost}`);
+
     location.reload();
     saveGame();
 
@@ -643,6 +649,7 @@ function saveGame() {
     fartFactoriesMultiplier,
     rebirths,
     rebirthBonus,
+    rebirthCost,
   };
   localStorage.setItem('fartGameSave', JSON.stringify(saveData));
   const msg = document.getElementById('saveMessage');
@@ -699,6 +706,7 @@ function loadGame() {
   fartFactoriesMultiplier = data.fartFactoriesMultiplier ?? fartFactoriesMultiplier;
   rebirths = data.rebirths ?? rebirths;
   rebirthBonus = data.rebirthBonus ?? rebirthBonus;
+  rebirthCost = data.rebirthCost ?? rebirthCost;
 
   update();
 }
