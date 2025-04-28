@@ -74,5 +74,9 @@ Prox - v0.8.0 First iteration of Rebirth function, still buggy
 
 4/27/25
 
-Prox - v0.9.0 Rebirth Function complete! made rebirth cost multiply by 3 each rebirth, made cost of buildings increase at the same rate. 
+Prox - v0.9.0 Rebirth Function complete! made rebirth cost multiply by 3 each rebirth, made cost of buildings increase at the same rate.
+
+4/28/25 
+
 Prox - added rebirth counter
+Prox - nerfed rebirth cost
