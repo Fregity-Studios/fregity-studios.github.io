@@ -273,27 +273,27 @@ function rebirth() {
 
     // Reset game variables
     burrito = 0;
-    baseCosts.burrito *= 2;
+    baseCosts.burrito *= 1.9;
     costOfBurrito = baseCosts.burrito;
     
     fpc = 1;
-    baseCosts.fpc *= 2;
+    baseCosts.fpc *= 1.9;
     costOfFpc = baseCosts.fpc;
     
     toilets = 0;
-    baseCosts.toilets *= 2;
+    baseCosts.toilets *= 1.9;
     costOfToilets = baseCosts.toilets;
     
     bathrooms = 0;
-    baseCosts.bathrooms *= 2;
+    baseCosts.bathrooms *= 1.9;
     costOfBathroom = baseCosts.bathrooms;
     
     tacoStands = 0;
-    baseCosts.tacoStands *= 2;
+    baseCosts.tacoStands *= 1.9;
     costOfTacoStands = baseCosts.tacoStands;
     
     fartFactories = 0;
-    baseCosts.fartFactories *= 2;
+    baseCosts.fartFactories *= 1.9;
     costOfFartFactories = baseCosts.fartFactories;
     
     clickProductionMultiplier = 1;
@@ -325,7 +325,6 @@ function rebirth() {
     conveyorBelt = false;
 
     // Update the UI
-    alert(`You have rebirthed! Total Rebirths: ${rebirths}`);
     document.getElementById("upgradeConveyorBelt").classList.add("hidden");
     document.getElementById("upgradeBetterTrucks").classList.add("hidden");
     document.getElementById("upgradeDoubleFlush").classList.add("hidden");
