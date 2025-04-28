@@ -273,27 +273,27 @@ function rebirth() {
 
     // Reset game variables
     burrito = 0;
-    baseCosts.burrito *= 3;
+    baseCosts.burrito *= 2;
     costOfBurrito = baseCosts.burrito;
     
     fpc = 1;
-    baseCosts.fpc *= 3;
+    baseCosts.fpc *= 2;
     costOfFpc = baseCosts.fpc;
     
     toilets = 0;
-    baseCosts.toilets *= 3;
+    baseCosts.toilets *= 2;
     costOfToilets = baseCosts.toilets;
     
     bathrooms = 0;
-    baseCosts.bathrooms *= 3;
+    baseCosts.bathrooms *= 2;
     costOfBathroom = baseCosts.bathrooms;
     
     tacoStands = 0;
-    baseCosts.tacoStands *= 3;
+    baseCosts.tacoStands *= 2;
     costOfTacoStands = baseCosts.tacoStands;
     
     fartFactories = 0;
-    baseCosts.fartFactories *= 3;
+    baseCosts.fartFactories *= 2;
     costOfFartFactories = baseCosts.fartFactories;
     
     clickProductionMultiplier = 1;
@@ -340,7 +340,7 @@ function rebirth() {
     document.getElementById("buyBathroomBtn").classList.add("hidden");
     document.getElementById("buyToiletBtn").classList.add("hidden");
 
-    rebirthCost *= 3;
+    rebirthCost *= 2.1;
 
 
     location.reload();
