@@ -20,6 +20,7 @@ let fartFactoriesBought = 0;
 let strongerLaxatives = false;
 let evenStrongerLaxatives = false;
 let superStrongLaxatives = false;
+let megaStrongLaxatives = false;
 let ultraStrongLaxatives = false;
 let moreIngredients = false;
 let improvedSeats = false;
@@ -191,6 +192,16 @@ function buySuperStrongLaxatives() {
   }
 }
 
+function buyMegaStrongLaxatives() {
+  if (farts >= 250000000 && !megaStrongLaxatives) {
+    farts -= 250000000;
+    fpcMultiplier *= 5;
+    megaStrongLaxatives = true;
+    document.getElementById("upgradeMegaStrongLaxatives").classList.add("hidden");
+    update();
+  }
+}
+
 function buyUltraStrongLaxatives() {
   if (farts >= 1000000000 && !ultraStrongLaxatives) {
     farts -= 1000000000;
@@ -297,6 +308,7 @@ function rebirth() {
     strongerLaxatives = false;
     evenStrongerLaxatives = false;
     superStrongLaxatives = false;
+    megaStrongLaxatives = false;
     ultraStrongLaxatives = false;
     moreIngredients = false;
     improvedSeats = false;
@@ -469,6 +481,9 @@ async function rec() {
   if (totalFarts >= 10000000 && !superStrongLaxatives) {
     document.getElementById("upgradeSuperStrongLaxatives").classList.remove("hidden");
   }
+  if (totalFarts >= 250000000 && !megaStrongLaxatives) {
+    document.getElementById("upgradeMegaStrongLaxatives").classList.remove("hidden");
+  }
   if (totalFarts >= 1000000000 && !ultraStrongLaxatives) {
     document.getElementById("upgradeUltraStrongLaxatives").classList.remove("hidden");
   }
@@ -627,6 +642,7 @@ function saveGame() {
     strongerLaxatives,
     evenStrongerLaxatives,
     superStrongLaxatives,
+    megaStrongLaxatives,
     ultraStrongLaxatives,
     moreIngredients,
     improvedSeats,
@@ -683,6 +699,7 @@ function loadGame() {
   strongerLaxatives = data.strongerLaxatives ?? strongerLaxatives;
   evenStrongerLaxatives = data.evenStrongerLaxatives ?? evenStrongerLaxatives;
   superStrongLaxatives = data.superStrongLaxatives ?? superStrongLaxatives;
+  megaStrongLaxatives = data.megaStrongLaxatives ?? megaStrongLaxatives;
   ultraStrongLaxatives = data.ultraStrongLaxatives ?? ultraStrongLaxatives;
   moreIngredients = data.moreIngredients ?? moreIngredients;
   improvedSeats = data.improvedSeats ?? improvedSeats;
@@ -736,6 +753,7 @@ window.addEventListener('DOMContentLoaded', () => {
       strongerLaxatives = false;
       evenStrongerLaxatives = false;
       superStrongLaxatives = false;
+      megaStrongLaxatives = false;
       ultraStrongLaxatives = false;
       moreIngredients = false;
       improvedSeats = false;
