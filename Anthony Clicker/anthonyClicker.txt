@@ -70,9 +70,17 @@ Nick - v0.7.0 added 5 new upgrades
 4/24/25
 
 Prox - v0.7.1 Style improvements, squashed some bugs
-
 Prox - v0.8.0 First iteration of Rebirth function, still buggy 
+
+4/27/25
+
+Prox - v0.9.0 Rebirth Function complete! made rebirth cost multiply by 3 each rebirth, made cost of buildings increase at the same rate.
+
+4/28/25 
+
+Prox - v0.9.1 added rebirth counter
+Prox - v0.9.2 nerfed rebirth cost
 
 4/29/25
 
-Nick - v0.9.0 added new clicks upgrade
+Nick - v0.9.3 added new click upgrade
