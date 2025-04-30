@@ -353,7 +353,7 @@ function rebirth() {
 
     rebirthCost *= 2.1;
 
-
+    alert("You have rebirthed! Bonus applied!")
     saveGame();
     update();
     
