@@ -354,8 +354,9 @@ function rebirth() {
     rebirthCost *= 2.1;
 
 
-    location.reload();
     saveGame();
+    update();
+    
 
   }
 }
