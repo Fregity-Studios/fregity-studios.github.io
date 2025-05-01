@@ -280,10 +280,13 @@ function buyConveyorBelt() {
 }
 
 function buyTimeBonus() {
-  if (totalFarts >= 100000000000 && !timeBoostActive) {
+  if (farts >= 100000000000 && !timeBoostActive) {
     farts -= 100000000000;
     timeBoostActive = true;
     timeBoostEnd = Date.now() + 60000; // 1 minute = 60000ms
+    const msg = document.getElementById('timeBonusMessage');
+    msg.style.display = 'block';
+    setTimeout(() => msg.style.display = 'none', 2000); // hides after 2 seconds
   }
 }
 
