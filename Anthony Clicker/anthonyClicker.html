@@ -10,7 +10,7 @@
 	<body>
 		<button id="startButton" class="styled">Start Game</button>
 			<div id="game" style="display: none;">
-				<h1>Anthony Clicker V 0.9.3</h1>
+				<h1>Anthony Clicker V 0.10.0</h1>
 				<button id="muteButton" class="styled mute-btn" style="position: fixed; bottom: 80px; left: 20px;">🔊 Mute Farts</button>				<div id="timePlayed">Time Wasted: 0m 0s</div> <br>
 				<button id="iconChange" class="styled icon-btn" onclick="cycleImage();">Change Icon</button>
 				<div style="display: flex; justify-content: center; align-items: center;">
@@ -19,6 +19,7 @@
 						<div id="farts">Farts: 0</div>
 						<div id="fps">Farts per Second: 0</div>
 						<div id="fpc">Farts per Click: 1</div>
+						<div id="rebirthCounter"></div>
 					</div>
 				</div>		
 				<div id="buildingWrapper">
@@ -42,19 +43,15 @@
 					<button class="styled hidden" id="upgradeDoubleFlush" onclick="buyDoubleFlush()">Double Flush (1M farts)</button>
 					<button class="styled hidden" id="upgradeBetterTrucks" onclick="buyBetterTrucks()">Better Stands (2M farts)</button>
 					<button class="styled hidden" id="upgradeConveyorBelt" onclick="buyConveyorBelt()">Conveyor Belt (5M farts)</button>
+					<button class="styled" id="timeBonus" onclick="buyTimeBonus()">Time bonus: 100x speed (100B farts)</button>
 					<button class="styled" id="upgradeRebirth" onclick="rebirth()"></button>
 					</div>
 				</div>
-				<button id="saveButton" class="styled"style="position: fixed; bottom: 20px; left: 20px; padding: 10px;">
-					Save Game
-				</button>
-				<button id="deleteSaveButton" class="styled"style="position: fixed; bottom: 20px; left: 180px; padding: 10px;">
-					Delete Save
-				</button>
+				<button id="saveButton" class="styled"style="position: fixed; bottom: 20px; left: 20px; padding: 10px;">Save Game</button>
+				<button id="deleteSaveButton" class="styled"style="position: fixed; bottom: 20px; left: 180px; padding: 10px;">Delete Save</button>
 				</button>
 				<script src="script.js"></script>
 				<div id="bonusText" class="hidden"></div>
-				<div id="rebirthCounter" style="position:fixed; bottom: 600px; left: 10px; color: black;"></div>
 				<div id="saveMessage" style="position: fixed; bottom: 80px; left: 10px; color: black; display: none;">Game Saved!</div>
 				<img src="Pictures/bowlingball.png" id="goldenBall" class="hidden" style="position:absolute; width:60px; height:60px; cursor:pointer;">
 				<audio id="bgMusic" loop><source src="Audio/The Anthony Poop Song.mp3" type="audio/mpeg" /></audio>

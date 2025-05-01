@@ -5,6 +5,10 @@
 let startTime = Date.now();
 let timePlayed = 0; // in seconds
 
+let timeBoostActive = false;
+let timeBoostEnd = 0;
+
+
 let currentImageIndex = 0;
 let effectsMuted = false;
 
@@ -275,6 +279,14 @@ function buyConveyorBelt() {
   }
 }
 
+function buyTimeBonus() {
+  if (totalFarts >= 100000000000 && !timeBoostActive) {
+    farts -= 100000000000;
+    timeBoostActive = true;
+    timeBoostEnd = Date.now() + 60000; // 1 minute = 60000ms
+  }
+}
+
 function rebirth() {
   // Check if the player can rebirth 
   if (totalFarts >= rebirthCost) { 
@@ -378,8 +390,8 @@ async function moreU() {
     sound.play();
   }
 
-  icon.style.transform = 'scale(0.95)';
-  await new Promise(resolve => setTimeout(resolve, 100));
+  icon.style.transform = 'scale(0.9)';
+  await new Promise(resolve => setTimeout(resolve, 50));
   icon.style.transform = 'scale(1)';
   
   // Update farts based on farts per click (fpc)
@@ -484,16 +496,32 @@ function scheduleGoldenBall() {
 scheduleGoldenBall();
 
 // adds farts every second
+async function timeTick() {
+  await new Promise(resolve => setTimeout(resolve, 1000)); // Wait for 1 second
+  timePlayed += 1; // Increment time played every second
+
+  update(); // Update the UI
+  requestAnimationFrame(timeTick); // Call rec again for the next second
+}
+
 async function rec() {
-  await new Promise(resolve => setTimeout(resolve, 1000));
+  await new Promise(resolve => setTimeout(resolve, 10));
 
   // Calculate fps based on current production amounts
   let fps = (getProductionAmount("burrito") + getProductionAmount("toilet") + getProductionAmount("bathroom") + getProductionAmount("tacoStand") + getProductionAmount("fartFactory")) * globalProductionMultiplier;
+  if (timeBoostActive) {
+    fps *= 1;
+    if (Date.now() >= timeBoostEnd) {
+      timeBoostActive = false;
+    }
+  }
+  else {
+    fps /= 100; // Normal production rate
+  }
 
   // Update farts with fps
   farts += fps; // This should correctly add fps to farts
   totalFarts += fps; // Update total farts
-  timePlayed += 1; // Increment time played every second
 
   // Check for upgrades
   if (totalFarts >= 1000 && !strongerLaxatives) {
@@ -527,6 +555,9 @@ async function rec() {
     document.getElementById("upgradeConveyorBelt").classList.remove("hidden");
   }
   
+  if (timeBoostActive && Date.now() >= timeBoostEnd) {
+    timeBoostActive = false;
+  }
 
   update(); // Update the UI
   requestAnimationFrame(rec); // Call rec again for the next second
@@ -642,6 +673,7 @@ function saveGame() {
   const saveData = {
     effectsMuted,
     timePlayed,
+    timeBoostActive,
     currentImageIndex,
     farts,
     totalFarts,
@@ -701,6 +733,7 @@ function loadGame() {
   effectsMuted = data.effectsMuted ?? false;
   document.getElementById('muteButton').textContent = effectsMuted ? '🔇 Unmute Farts' : '🔊 Mute Farts';
   timePlayed = data.timePlayed ?? 0;
+  timeBoostActive = data.timeBoostActive ?? false;
   currentImageIndex = data.currentImageIndex ?? currentImageIndex;
   document.getElementById('clickericon').src = imageSources[currentImageIndex];
   farts = data.farts ?? farts;
@@ -772,6 +805,7 @@ window.addEventListener('DOMContentLoaded', () => {
       farts = 0;
       totalFarts = 0;
       timePlayed = 0;
+      timeBoostActive = false;
       currentImageIndex = 0;
       effectsMuted = false;
       burritosBought = 0;

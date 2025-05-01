@@ -84,3 +84,9 @@ Prox - v0.9.2 nerfed rebirth cost
 4/29/25
 
 Nick - v0.9.3 added new click upgrade
+
+5/1/25
+
+Nick - v0.10.0 added time bonus feature, also changed fps to update 10 times per second but still 
+give the same amount of fps per second if that makes sense
+like every 10th of a second it gives a 10th of the fps you should get
