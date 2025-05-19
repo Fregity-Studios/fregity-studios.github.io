@@ -90,3 +90,7 @@ Nick - v0.9.3 added new click upgrade
 Nick - v0.10.0 added time bonus feature, also changed fps to update 10 times per second but still 
 give the same amount of fps per second if that makes sense
 like every 10th of a second it gives a 10th of the fps you should get
+
+5/19/25
+
+Nick - v0.10.1 fixed the time not ticking

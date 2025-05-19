@@ -861,4 +861,6 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+requestAnimationFrame(timeTick);
+
 loadGame(); // Load save game on startup
