@@ -1,0 +1,13 @@
+body {
+    text-align: center;
+}
+
+button {
+  padding: 15px 30px;
+  font-size: 1.5rem;
+  color: black;
+  border: black 2px solid;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-left: 5px;
+}

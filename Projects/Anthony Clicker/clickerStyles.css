@@ -1,44 +1,63 @@
 body {
-    text-align: center;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size: 20px;
-    font-weight: 3px;
+  text-align: center;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+  font-size: 20px;
+  background-color: #111;
+  color: #f0f0f0;
+  background-image: radial-gradient(circle at center, #222 0%, #111 100%);
+  margin: 0;
+  padding: 0;
 }
 
+h1 {
+  font-size: 28px;
+  color: #ffffff;
+  text-shadow: 0 0 5px #999;
+}
+
+/* Icon Styling */
 #iconChange {
   margin-right: 200px;
 }
 
-#clickericon{
+#clickericon {
   text-align: center;
   border-radius: 10px;
   cursor: pointer;
   margin-top: 5px;
   margin-bottom: 30px;
   transition: transform 0.3s ease;
+  box-shadow: 0 0 5px #aaa;
 }
 
-h1 {
-  font-size: 25px;
-  font-weight: 5px;
-}
-
-/* buttons */ 
-button.styled {
-  background-color: transparent;
-  border: 1px solid black;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-  font-size: 1.4rem;
-  margin: 5px 0;
-}
-button.styled:hover {
+#clickericon:hover {
   transform: scale(1.1);
 }
+
+/* Button Styling */
+button.styled {
+  background-color: #222;
+  color: #f0f0f0;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+  font-size: 1.4rem;
+  padding: 10px 20px;
+  margin: 5px 0;
+}
+
+button.styled:hover {
+  transform: scale(1.1);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Icon Buttons */
 .icon-btn {
   font-size: 1.2rem !important; 
 }
+
+/* Building List */
 .building {
   margin-right: 10px;
 }
@@ -48,9 +67,11 @@ button.styled:hover {
   font-size: 72px;
   top: 40%;
   left: 38%;
+  color: #ffffff;
+  text-shadow: 0 0 10px #999;
 }
-/* end buttons */
 
+/* Upgrades Menu */
 #upgradesMenuWrapper {
   position: absolute;
   top: 70px;
@@ -59,8 +80,7 @@ button.styled:hover {
   z-index: 10;
 }
 
-/* fade-in */
-
+/* Fade In Animation */
 .hidden {
   display: none;
 }
@@ -77,8 +97,7 @@ button.styled:hover {
   }
 }
 
-/* bowling ball */
-
+/* Golden Ball Styling */
 #goldenBall {
   position: absolute;
   width: 60px;
@@ -88,7 +107,7 @@ button.styled:hover {
   z-index: 1000;
   transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
   opacity: 0;
-  animation: spin 1s linear infinite; /* This makes the ball spin */
+  animation: spin 1s linear infinite;
   transform: scale(0.5) rotate(0deg);
 }
 
@@ -112,55 +131,45 @@ button.styled:hover {
   to { transform: scale(1) rotate(360deg); }
 }
 
-/* end fade-in */
-
-/* bowling ball text */ 
+/* Golden Ball Text */
 #bonusText {
   position: fixed;
   top: 80%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(0, 0, 0, 0); /* semi-transparent background */
   padding: 20px;
   border-radius: 10px;
   font-size: 24px;
   font-weight: bold;
-  color: black;
-  text-shadow: 0 0 5px black;
+  color: #fff;
+  text-shadow: 0 0 8px black;
   z-index: 1001;
-  opacity: 0; /* Start hidden */
-  transition: opacity 0.3s ease; /* Smooth fade-in and fade-out */
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 #bonusText.show {
-  opacity: 1; /* Fade in */
+  opacity: 1;
 }
 
 #bonusText.fade-out {
-  opacity: 0; /* Fade out */
+  opacity: 0;
 }
 
-
-/* end bowling ball text */
-
-
+/* Save Message */
 #saveMessage {
   position: fixed;
   top: 82%;
   left: 10px;
+  color: #fff;
+  font-size: 0.9rem;
 }
 
-#buildingWrapper { /* arrange buildings in a column */
+/* Building & Upgrade Wrapper */
+#buildingWrapper,
+.upgrades-Menu {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 10px 0
-}
-
-
-.upgrades-Menu { /* arrange upgrades in a column */
-  display: flex; 
-  flex-direction: column; 
-  align-items: center; 
-  margin: 10px 0; 
+  margin: 10px 0;
 }

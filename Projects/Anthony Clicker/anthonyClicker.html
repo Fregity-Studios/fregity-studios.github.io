@@ -1,0 +1,65 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width">
+		<title>Anthony Clicker</title>
+		<link href="clickerStyles.css" rel="stylesheet"/>
+		<link rel="icon" href="Pictures/icon.png">
+	</head>
+	<body>
+		<button id="startButton" class="styled">Start Game</button>
+			<div id="game" style="display: none;">
+				<h1>Anthony Clicker V 0.10.1</h1>
+				<button id="muteButton" class="styled mute-btn" style="position: fixed; bottom: 80px; left: 20px;">🔊 Mute Farts</button>				<div id="timePlayed">Time Wasted: 0m 0s</div> <br>
+				<button id="iconChange" class="styled icon-btn" onclick="cycleImage();">Change Icon</button>
+				<div style="display: flex; justify-content: center; align-items: center;">
+				<div id = 'uprow'><img src = 'Pictures/anthony.jpg' id = 'clickericon' width = '150' height = '150'> </img></div>
+				<div style="display: flex; flex-direction: column; margin-left: 20px;">
+					<div id="farts">Farts: 0</div>
+					<div id="fps">Farts per Second: 0</div>
+					<div id="fpc">Farts per Click: 1</div>
+					<div id="rebirthCounter"></div>
+				</div>
+				</div>		
+				<div id="buildingWrapper">
+					<button class="styled building" id="buyFpcBtn" onclick = 'buyFpc();'></button>
+					<button class="styled building" id="buyBurritoBtn" onclick = 'buyBurrito();'></button>
+					<button class="styled hidden building" id="buyToiletBtn" onclick = "buyToilet();"></button>
+					<button class="styled hidden building" id="buyBathroomBtn" onclick = "buyBathroom();"></button>
+					<button class="styled hidden building" id="buyTacoStandBtn" onclick = "buyTacoStand();"></button>
+					<button class="styled hidden building" id="buyFartFactoryBtn" onclick = "buyFartFactory();"></button>
+				</div>
+				<div id="upgradesMenuWrapper">
+					<h2>Upgrades:</h2>
+					<div id="upgradesMenu" class = "upgrades-Menu">
+					<button class="styled hidden" id="upgradeStrongerLaxatives" onclick="buyStrongerLaxatives()">Stronger Laxatives (1K farts)</button>
+					<button class="styled hidden" id="upgradeEvenStrongerLaxatives" onclick="buyEvenStrongerLaxatives()">Even Stronger Laxatives (1M farts)</button>
+					<button class="styled hidden" id="upgradeSuperStrongLaxatives" onclick="buySuperStrongLaxatives()">Super Strong Laxatives (10M farts)</button>
+					<button class="styled hidden" id="upgradeMegaStrongLaxatives" onclick="buyMegaStrongLaxatives()">Mega Strong Laxatives (250M farts)</button>
+					<button class="styled hidden" id="upgradeUltraStrongLaxatives" onclick="buyUltraStrongLaxatives()">Ultra Strong Laxatives (1B farts)</button>
+					<button class="styled hidden" id="upgradeMoreIngredients" onclick="buyMoreIngredients()">More Ingredients (2.5K farts)</button>
+					<button class="styled hidden" id="upgradeImprovedSeats" onclick="buyImprovedSeats()">Improved Seats (250K farts)</button>
+					<button class="styled hidden" id="upgradeDoubleFlush" onclick="buyDoubleFlush()">Double Flush (1M farts)</button>
+					<button class="styled hidden" id="upgradeBetterTrucks" onclick="buyBetterTrucks()">Better Stands (2M farts)</button>
+					<button class="styled hidden" id="upgradeConveyorBelt" onclick="buyConveyorBelt()">Conveyor Belt (5M farts)</button>
+					<button class="styled" id="timeBonus" onclick="buyTimeBonus()">Time bonus: 100x speed (100B farts)</button>
+					<button class="styled" id="upgradeRebirth" onclick="rebirth()"></button>
+					</div>
+				</div>
+				<button id="saveButton" class="styled"style="position: fixed; bottom: 20px; left: 20px; padding: 10px;">Save Game</button>
+				<button id="deleteSaveButton" class="styled"style="position: fixed; bottom: 20px; left: 180px; padding: 10px;">Delete Save</button>
+                <button class="styled" style="position: fixed; bottom: 20px; left: 340px; padding: 10px;"><a href="../../index.html" style="color: #f0f0f0; text-decoration: none;">Portal</a></button>
+				<script src="clickerScript.js"></script>
+				<div id="bonusText" class="hidden"></div>
+				<div id="saveMessage" style="position: fixed; bottom: 80px; left: 10px; display: none;">Game Saved!</div>
+				<div id="timeBonusMessage" style="position: fixed; bottom: 20%; left: 40%; display: none;">Time Bonus Active For 1 Minute</div>
+				<img src="Pictures/bowlingball.png" id="goldenBall" class="hidden" style="position:absolute; width:60px; height:60px; cursor:pointer;">
+				<audio id="bgMusic" loop><source src="Audio/The Anthony Poop Song.mp3" type="audio/mpeg" /></audio>
+				<audio id="bowlingSound" src="Audio/bowling.mp3"></audio>
+				<audio id="fart1" src="Audio/fart.mp3"></audio>
+				<audio id="fart2" src="Audio/fart2.mp3"></audio>
+				<audio id="fart3" src="Audio/fart3.mp3"></audio>
+			</div>
+	</body>
+</html>
+

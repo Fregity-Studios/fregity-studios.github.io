@@ -1,0 +1,211 @@
+body {
+  font-family: 'Cinzel', 'Special Elite', 'Bebas Neue';
+  background: #111;
+  color: #e0dccc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-image: radial-gradient(circle at center, #121212 0%, #111 100%);
+  background: radial-gradient(ellipse at center, #1a1a1a 0%, #000000 100%);
+}
+
+.machine {
+  display: flex;
+  font-size: 5rem;
+  margin: 20px;
+  justify-content: center;
+}
+
+.slot {
+  background: #333;
+  border: 4px solid #666;
+  border-radius: 15px;
+  padding: 20px;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  transition: transform 0.2s ease;
+}
+
+.controls {
+  margin: 20px;
+}
+
+button {
+  padding: 15px 30px;
+  font-size: 1.5rem;
+  background: #3a2d20;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+button:hover {
+  background: #4a3c2f;
+}
+
+#result {
+  font-size: 1.5rem;
+  margin-top: 10px;
+  text-align: center;
+}
+
+input[type="range"] {
+  width: 200px;
+  margin: 10px;
+}
+
+#info {
+  position: absolute;
+  left: 2%;
+  top: 23%;
+  font-size: 1.4rem;
+  font-family: 'Special Elite';
+  margin-top: 20px;
+}
+
+
+
+/* Glowing sign things */
+
+.glow-sign {
+  font-size: 64px;
+  color: #fff;
+  text-shadow:
+    0 0 5px #fff,
+    0 0 10px #fff,
+    0 0 20px #FFD700,
+    0 0 30px #FFD700,
+    0 0 40px #FFD700,
+    0 0 70px #FFD700,
+    0 0 80px #FFD700;
+  animation: flicker 20s infinite;
+  margin-top: -75px;
+}
+/* Flicker Animation */
+@keyframes flicker {
+  0%, 97%, 100% {
+    opacity: 1;
+    text-shadow:
+      0 0 5px #FFD700,
+      0 0 10px #FFD700,
+      0 0 20px #FFD700,
+      0 0 30px #FFD700,
+      0 0 40px #FFD700,
+      0 0 70px #FFD700,
+      0 0 80px #FFD700;
+  }
+  98% {
+    opacity: 0.4;
+    text-shadow: 0 0 2px #222;
+  }
+  99% {
+    opacity: 0.8;
+    text-shadow:
+      0 0 4px #888,
+      0 0 8px #888;
+  }
+}
+
+
+/* Spark animation base */
+.spark-letter {
+  position: relative;
+  display: inline-block;
+}
+
+.spark {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: yellow;
+  border-radius: 50%;
+  opacity: 1;
+  pointer-events: none;
+  animation: shootSpark 1s ease-out forwards;
+  z-index: 999;
+}
+
+@keyframes spark-fall {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 1;
+    transform: translate(calc(20px - 40px * random()), 120px) rotate(180deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc(40px - 80px * random()), 200px) rotate(360deg);
+  }
+}
+
+/* flicker i animation */
+
+.flicker-i {
+  display: inline-block;
+  color: #fefefe;
+  transition: opacity 0.05s ease-in-out;
+  text-shadow:
+    0 0 5px #FFD700,
+    0 0 10px #FFD700,
+    0 0 20px #FFD700,
+    0 0 40px #FFD700;
+}
+
+@keyframes brokenFlicker {
+  0%   { opacity: 1; }
+  3%   { opacity: 1; }
+  6%   { opacity: 1; }
+  9%   { opacity: 0; }
+  12%  { opacity: 1; }
+  15%  { opacity: 0.5; }
+  25%  { opacity: 1; }
+  40%  { opacity: 1; }
+  50%  { opacity: 1; }
+  60%  { opacity: 0.2; }
+  70%  { opacity: 1; }
+  80%  { opacity: 0.6; }
+  90%  { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+/* flicker all */
+
+.sign-letter {
+  display: inline;
+  transition: opacity 0.1s, text-shadow 0.1s;
+}
+
+/* volume control */
+
+.volume-control {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 10px 15px;
+  border-radius: 10px;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 1000;
+}
+
+.volume-control input[type="range"] {
+  width: 100px;
+}
