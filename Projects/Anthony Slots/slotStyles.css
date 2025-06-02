@@ -34,6 +34,7 @@ body {
 
 .controls {
   margin: 20px;
+  text-align: center;
 }
 
 button {
@@ -208,4 +209,20 @@ input[type="range"] {
 
 .volume-control input[type="range"] {
   width: 100px;
+}
+
+/* end of volume control */
+
+.coinDisplay {
+  display: inline-block;
+  width: 20ch;
+  text-align: left; /* Optional: makes numbers align neatly */
+  flex-shrink: 0;
+}
+
+
+.betDisplay {
+  display: inline-block;
+  width: 60ch;
+  flex-shrink: 0;
 }

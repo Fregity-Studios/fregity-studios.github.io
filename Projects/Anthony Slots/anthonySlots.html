@@ -29,8 +29,13 @@
     </div>
     <div class="controls">
       <p>Coins: <span id="coins">10</span></p>
-      <label for="bet">Bet: <span id="betValue">1</span></label>
-      <input type="range" id="bet" value="1" min="1" max="10">
+      <div class="betDisplay">
+        <label for="bet">Bet: <span id="betValue">1</span></label>
+        <br>
+        <input type="range" id="bet" value="1" min="1" max="10">
+      </div>
+      <!-- <button id="betModeToggle">Switch to % Mode</button> -->
+      <br>  
       <button id="spinBtn" style="font-family: 'Source Serif Pro';">🎰 SPIN</button>
       <button id="freeCoinBtn" style="display:none; font-family: 'Source Serif Pro';">🎁 Get 1 Free Coin</button>
       <button id="buyAutoSpinBtn" style="font-family: 'Source Serif Pro';">🛒 Buy Auto Spin (1000 coins)</button>

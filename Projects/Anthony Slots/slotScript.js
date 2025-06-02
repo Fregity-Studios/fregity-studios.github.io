@@ -19,6 +19,9 @@ const letters = document.querySelectorAll('.sign-letter');
 const dustCanvas = document.getElementById('dustCanvas');
 const dctx = dustCanvas.getContext('2d');
 const volumeSlider = document.getElementById('volumeSlider');
+const betSlider = document.getElementById("bet"); // assuming this exists
+const betDisplay = document.getElementById("betValue"); // your UI for current bet
+const toggleBtn = document.getElementById("betModeToggle");
 
 
 let coins = parseInt(localStorage.getItem('slotCoins') || '10');
@@ -28,6 +31,8 @@ let autoSpinEnabled = false;
 let confettiPieces = [];
 let intenseFlickerTimeout;
 let isSpinning = false;
+let isPercentMode = false; // false = fixed amount, true = percentage
+
 
 coinsDisplay.textContent = formatNumber(coins);
 betInput.max = coins;
@@ -71,9 +76,9 @@ function animateSlots() {
 
 async function spin() {
   if (isSpinning) return;
-  const bet = parseInt(betInput.value);
   const winsound = document.getElementById('winSound');
   const spinSound = document.getElementById('spinSound');
+  const bet = parseInt(betInput.value);
   winsound.volume = volumeSlider.value
   spinSound.volume = volumeSlider.value;
 
@@ -112,14 +117,13 @@ async function spin() {
   }
 
   checkCoinStatus();
+  updateBetDisplay();
 }
 
 async function autoSpinLoop() {
-  while (autoSpinEnabled && coins >= 0) {
-    if (!isSpinning) {
-      spinSlots();
-    await new Promise(resolve => setTimeout(resolve, 500));
-    }
+  while (autoSpinEnabled && coins > 0) {
+    spin();
+    await new Promise(resolve => setTimeout(resolve, 1500));
   }
 }
 
@@ -491,5 +495,28 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
+function updateSliderBounds() {
+    if (isPercentMode) {
+        betSlider.min = 1;
+        betSlider.max = 100;
+        betSlider.step = 1;
+    } else {
+        betSlider.min = 1;
+        betSlider.max = coins; // or whatever your coin var is
+        betSlider.step = 1;
+    }
+}
+
+// Update bet amount displayed
+function updateBetDisplay() {
+  currentBet = parseInt(betSlider.value);
+  betDisplay.textContent = `${formatNumber(currentBet)} coins, (${(currentBet / coins * 100).toFixed(2)}%)`;
+}
+
+// Listen for slider changes
+betSlider.addEventListener("input", updateBetDisplay);
+
 
 checkCoinStatus();
+updateSliderBounds();
+updateBetDisplay();
