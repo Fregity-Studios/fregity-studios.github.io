@@ -106,7 +106,7 @@ async function spin() {
     isSpinning = false;
     startConfetti(); // Trigger confetti effect
     updateCoins(bet * multiplier);
-    result.textContent = `💰 JACKPOT! +${formatNumber(bet * multiplier)} coins`;v
+    result.textContent = `💰 JACKPOT! +${formatNumber(bet * multiplier)} coins`;
     winSound.play();
   } else if (new Set(slotValues).size === 2) {
     updateCoins(bet * 3);
@@ -355,7 +355,7 @@ freeCoinBtn.addEventListener('click', async () => {
   freeCoinBtn.disabled = true;
   await new Promise(resolve => setTimeout(resolve, 3000));
   updateCoins(1);
-  result.textContent = "🎉 You got 1 free coin!";
+  result.textContent = "You got 1 free coin";
   freeCoinBtn.disabled = false;
   checkCoinStatus();
 });
