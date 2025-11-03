@@ -19,9 +19,11 @@ const letters = document.querySelectorAll('.sign-letter');
 const dustCanvas = document.getElementById('dustCanvas');
 const dctx = dustCanvas.getContext('2d');
 const volumeSlider = document.getElementById('volumeSlider');
-const betSlider = document.getElementById("bet"); // assuming this exists
-const betDisplay = document.getElementById("betValue"); // your UI for current bet
+const betSlider = document.getElementById("bet"); 
+const betDisplay = document.getElementById("betValue"); // UI for current bet
 const toggleBtn = document.getElementById("betModeToggle");
+const buyFourthSlotBtn = document.getElementById("buyFourthSlotBtn");
+const slot4 = document.getElementById("slot4");
 
 
 let coins = parseInt(localStorage.getItem('slotCoins') || '10');
@@ -32,6 +34,7 @@ let confettiPieces = [];
 let intenseFlickerTimeout;
 let isSpinning = false;
 let isPercentMode = false; // false = fixed amount, true = percentage
+let fourthSlotUnlocked = localStorage.getItem('fourthSlotUnlocked') === 'true';
 
 
 coinsDisplay.textContent = formatNumber(coins);
@@ -41,6 +44,19 @@ betValue.textContent = betInput.value;
 betInput.addEventListener('input', () => {
   betValue.textContent = formatNumber(betInput.value);
 });
+
+if (fourthSlotUnlocked) {
+  slot4.style.display = 'flex';
+  buyFourthSlotBtn.style.display = 'none';
+}
+
+
+function getActiveSlots() {
+  return fourthSlotUnlocked
+    ? [document.getElementById('slot1'), document.getElementById('slot2'), document.getElementById('slot3'), document.getElementById('slot4')]
+    : [document.getElementById('slot1'), document.getElementById('slot2'), document.getElementById('slot3')];
+}
+
 
 function getRandomSymbol() {
   return symbols[Math.floor(Math.random() * symbols.length)];
@@ -58,6 +74,7 @@ function updateCoins(amount) {
 }
 
 function animateSlots() {
+  const slots = getActiveSlots();
   return new Promise(resolve => {
     let spins = 10;
     let count = 0;
@@ -93,28 +110,65 @@ async function spin() {
   await animateSlots();
   isSpinning = false;
   
-
+  const slots = getActiveSlots();
   const slotValues = slots.map(slot => slot.textContent);
 
-  if (slotValues.every(s => s === slotValues[0])) {
-    let symbol = slotValues[0];
-    let multiplier = 15;
-    if (symbol === '🍆') multiplier = 18;
-    else if (symbol === '💎') multiplier = 22;
-    else if (symbol === '7️') multiplier = 75;
+ const counts = {};
+slotValues.forEach(s => counts[s] = (counts[s] || 0) + 1);
 
-    isSpinning = false;
-    startConfetti(); // Trigger confetti effect
-    updateCoins(bet * multiplier);
-    result.textContent = `💰 JACKPOT! +${formatNumber(bet * multiplier)} coins`;
-    winSound.play();
-  } else if (new Set(slotValues).size === 2) {
-    updateCoins(bet * 3);
-    result.textContent = `🎉 Small Win! +${formatNumber(bet * 3)} coins`;
-    winSound.play();
-  } else {
-    result.textContent = "❌ Try Again!";
+const maxCount = Math.max(...Object.values(counts)); // highest number of matches
+const unique = Object.keys(counts).length;
+
+// 🎯 Determine win type
+if (maxCount === slotValues.length) {
+  // All match (Jackpot)
+  let symbol = slotValues[0];
+  let multiplier = 15;
+  if (symbol === '🍆') multiplier = 18;
+  else if (symbol === '💎') multiplier = 22;
+  else if (symbol === '7️') multiplier = 75;
+
+  startConfetti();
+  updateCoins(bet * multiplier);
+  result.textContent = `💰 JACKPOT! +${formatNumber(bet * multiplier)} coins`;
+  winSound.play();
+
+} else if (maxCount === 3) {
+  // 3 of a kind
+  const tripleMultiplier = fourthSlotUnlocked ? 8 : 6;
+  updateCoins(bet * tripleMultiplier);
+  result.textContent = `✨ Triple Win! +${formatNumber(bet * tripleMultiplier)} coins`;
+  winSound.play();
+  createConfetti();
+   let duration = 3000;
+   let startTime = performance.now();
+
+   function animateMiniConfetti(time) {
+    let elapsed = time - startTime;
+    drawConfetti();
+    if (elapsed < duration) {
+      requestAnimationFrame(animateMiniConfetti);
+    } else {
+      confettiPieces = [];
+      ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+    }
   }
+
+  requestAnimationFrame(animateMiniConfetti);
+
+} else if (maxCount === 2) {
+  // 2 of a kind
+  const pairMultiplier = fourthSlotUnlocked ? 4 : 3;
+  updateCoins(bet * pairMultiplier);
+  result.textContent = `🎉 Small Win! +${formatNumber(bet * pairMultiplier)} coins`;
+  winSound.play();
+
+} else {
+  // No match
+  result.textContent = "❌ Try Again!";
+}
+
+
 
   checkCoinStatus();
   updateBetDisplay();
@@ -349,6 +403,22 @@ buyAutoSpinBtn.addEventListener('click', () => {
     result.textContent = "❌ Not enough coins to unlock Auto Spin!";
   }
 });
+
+buyFourthSlotBtn.addEventListener('click', () => {
+  if (coins >= 2000 && !fourthSlotUnlocked) {
+    updateCoins(-2000);
+    fourthSlotUnlocked = true;
+    localStorage.setItem('fourthSlotUnlocked', 'true');
+    result.textContent = "✅ 4th Slot unlocked! Better odds activated!";
+    buyFourthSlotBtn.style.display = 'none';
+    slot4.style.display = 'flex';
+  } else if (fourthSlotUnlocked) {
+    result.textContent = "🎰 You already own the 4th slot!";
+  } else {
+    result.textContent = "❌ Not enough coins to unlock 4th slot!";
+  }
+});
+
 
 freeCoinBtn.addEventListener('click', async () => {
   result.textContent = "📺 Watching ad...";
