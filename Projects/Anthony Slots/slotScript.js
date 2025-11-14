@@ -19,7 +19,7 @@ const letters = document.querySelectorAll('.sign-letter');
 const dustCanvas = document.getElementById('dustCanvas');
 const dctx = dustCanvas.getContext('2d');
 const volumeSlider = document.getElementById('volumeSlider');
-const betSlider = document.getElementById("bet"); 
+const betSlider = document.getElementById("bet");
 const betDisplay = document.getElementById("betValue"); // UI for current bet
 const toggleBtn = document.getElementById("betModeToggle");
 const buyFourthSlotBtn = document.getElementById("buyFourthSlotBtn");
@@ -445,30 +445,115 @@ if (autoSpinUnlocked) {
 }
 
 function formatNumber(num) {
-  if (num >=1e66) return num.toExponential();
-  if (num >= 1e63) return (num / 1e63).toFixed(3) + " vigintillion";
-  if (num >= 1e60) return (num / 1e60).toFixed(3) + " novemdecillion";
-  if (num >= 1e57) return (num / 1e57).toFixed(3) + " octodecillion";
-  if (num >= 1e54) return (num / 1e54).toFixed(3) + " septendecillion";
-  if (num >= 1e51) return (num / 1e51).toFixed(3) + " sexdecillion";
-  if (num >= 1e48) return (num / 1e48).toFixed(3) + " quindecillion";
-  if (num >= 1e45) return (num / 1e45).toFixed(3) + " quattuordecillion";
-  if (num >= 1e42) return (num / 1e42).toFixed(3) + " tredecillion";
-  if (num >= 1e39) return (num / 1e39).toFixed(3) + " duodecillion";
-  if (num >= 1e36) return (num / 1e36).toFixed(3) + " undecillion";
-  if (num >= 1e33) return (num / 1e33).toFixed(3) + " decillion";
-  if (num >= 1e30) return (num / 1e30).toFixed(3) + " nonillion";
-  if (num >= 1e27) return (num / 1e27).toFixed(3) + " octillion";
-  if (num >= 1e24) return (num / 1e24).toFixed(3) + " septillion";
-  if (num >= 1e21) return (num / 1e21).toFixed(3) + " sextillion";
-  if (num >= 1e18) return (num / 1e18).toFixed(3) + " quintillion";
-  if (num >= 1e15) return (num / 1e15).toFixed(3) + " quadrillion";
-  if (num >= 1e12) return (num / 1e12).toFixed(3) + " trillion";
-  if (num >= 1e9) return (num / 1e9).toFixed(3) + " billion";
-  if (num >= 1e6) return (num / 1e6).toFixed(3) + " million";
-  if (num >= 1e3) return (num / 1e3).toFixed(3) + "k";
-  return Math.floor(num);
+  const suffixes = [
+    [1e303, "centillion"],
+    [1e300, "novenonagintillion"],
+    [1e297, "octononagintillion"],
+    [1e294, "septenonagintillion"],
+    [1e291, "sexnonagintillion"],
+    [1e288, "quinquanonagintillion"],
+    [1e285, "quattuornonagintillion"],
+    [1e282, "trenonagintillion"],
+    [1e279, "duononagintillion"],
+    [1e276, "unononagintillion"],
+    [1e273, "nonagintillion"],
+    [1e270, "novenonagintillion"],
+    [1e267, "octooctogintillion"],
+    [1e264, "septenoctogintillion"],
+    [1e261, "sexoctogintillion"],
+    [1e258, "quinquaoctogintillion"],
+    [1e255, "quattuoroctogintillion"],
+    [1e252, "treoctogintillion"],
+    [1e249, "duooctogintillion"],
+    [1e246, "unoctogintillion"],
+    [1e243, "octogintillion"],
+    [1e240, "novenseptuagintillion"],
+    [1e237, "octoseptuagintillion"],
+    [1e234, "septenseptuagintillion"],
+    [1e231, "sexseptuagintillion"],
+    [1e228, "quinquaseptuagintillion"],
+    [1e225, "quattuorseptuagintillion"],
+    [1e222, "treseptuagintillion"],
+    [1e219, "duoseptuagintillion"],
+    [1e216, "unoseptuagintillion"],
+    [1e213, "septuagintillion"],
+    [1e210, "novensexagintillion"],
+    [1e207, "octosexagintillion"],
+    [1e204, "septensexagintillion"],
+    [1e201, "sexsexagintillion"],
+    [1e198, "quinquasexagintillion"],
+    [1e195, "quattuorsexagintillion"],
+    [1e192, "tresexagintillion"],
+    [1e189, "duosexagintillion"],
+    [1e186, "unosexagintillion"],
+    [1e183, "sexagintillion"],
+    [1e180, "novenquinquagintillion"],
+    [1e177, "octoquinquagintillion"],
+    [1e174, "septenquinquagintillion"],
+    [1e171, "sexquinquagintillion"],
+    [1e168, "quinquaquinquagintillion"],
+    [1e165, "quattuorquinquagintillion"],
+    [1e162, "trequinquagintillion"],
+    [1e159, "duoquinquagintillion"],
+    [1e156, "unoquinquagintillion"],
+    [1e153, "quinquagintillion"],
+    [1e150, "novenquadragintillion"],
+    [1e147, "octoquadragintillion"],
+    [1e144, "septenquadragintillion"],
+    [1e141, "sexquadragintillion"],
+    [1e138, "quinquaquadragintillion"],
+    [1e135, "quattuorquadragintillion"],
+    [1e132, "trequadragintillion"],
+    [1e129, "duoquadragintillion"],
+    [1e126, "unoquadragintillion"],
+    [1e123, "quadragintillion"],
+    [1e120, "noventrigintillion"],
+    [1e117, "octotrigintillion"],
+    [1e114, "septentrigintillion"],
+    [1e111, "sextrigintillion"],
+    [1e108, "quinquatrigintillion"],
+    [1e105, "quattuortrigintillion"],
+    [1e102, "tretrigintillion"],
+    [1e99, "duotrigintillion"],
+    [1e96, "unotrigintillion"],
+    [1e93, "trigintillion"],
+    [1e90, "novemvigintillion"],
+    [1e87, "octovigintillion"],
+    [1e84, "septenvigintillion"],
+    [1e81, "sexvigintillion"],
+    [1e78, "quinquavigintillion"],
+    [1e75, "quattuorvigintillion"],
+    [1e72, "trevigintillion"],
+    [1e69, "duovigintillion"],
+    [1e66, "unvigintillion"],
+    [1e63, "vigintillion"],
+    [1e60, "novemdecillion"],
+    [1e57, "octodecillion"],
+    [1e54, "septendecillion"],
+    [1e51, "sexdecillion"],
+    [1e48, "quindecillion"],
+    [1e45, "quattuordecillion"],
+    [1e42, "tredecillion"],
+    [1e39, "duodecillion"],
+    [1e36, "undecillion"],
+    [1e33, "decillion"],
+    [1e30, "nonillion"],
+    [1e27, "octillion"],
+    [1e24, "septillion"],
+    [1e21, "sextillion"],
+    [1e18, "quintillion"],
+    [1e15, "quadrillion"],
+    [1e12, "trillion"],
+    [1e9, "billion"],
+    [1e6, "million"],
+    [1e3, "k"]
+  ];
+
+  const suffix = suffixes.find(([value]) => num >= value);
+  return suffix ? (num / suffix[0]).toFixed(3) + " " + suffix[1] : num.toString();
 }
+
+
 
 function createSparkBurst() {
   for (let i = 0; i < 3; i++) {
