@@ -20,6 +20,16 @@ body {
   padding: 40px;
 }
 
+footer {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgb(60, 60, 60);
+  text-align: center;
+  width: 100%;
+}
+
 h1 {
   font-family: 'Cinzel', serif;
   font-size: 3.5rem;

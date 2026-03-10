@@ -20,6 +20,16 @@ h2 {
   margin-top: -10px;
 }
 
+button {
+  padding: 15px 30px;
+  font-size: 1.5rem;
+  background: white;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-left: 5px;
+}
 
 /* Button */
 

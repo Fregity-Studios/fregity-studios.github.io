@@ -1,5 +1,4 @@
 1. high urgency stuff
-move site to joeshmuck.shop
 work on prestige system
 
 
