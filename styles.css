@@ -6,8 +6,8 @@
 
 body {
   font-family: 'Roboto Slab', serif;
-  background: radial-gradient(circle at center, #2a2a2a, #0f0f0f);
-  color: #e0e0e0;
+  background: linear-gradient(150deg, #2a2a2a 0%, #1a1a1a 50%, #0f0f0f 100%);
+  color: #e6e6e6;
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -25,7 +25,7 @@ footer {
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  color: #777;
+  color: #7a7a7a;
   text-align: center;
   width: 100%;
 }
@@ -34,13 +34,15 @@ h1 {
   font-family: 'Cinzel', serif;
   font-size: 3.5rem;
   margin-bottom: 10px;
-  color: #d0d0d0;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  color: #ecd336;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.8), -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000, -2px 0 0 #000, 2px 0 0 #000, 0 -2px 0 #000, 0 2px 0 #000;
+  letter-spacing: 2px;
+  -webkit-text-stroke: 1px #d1ac31;
 }
 
 .subtitle {
   font-size: 1.2rem;
-  color: #aaa;
+  color: #8f8f8f;
   margin-bottom: 40px;
 }
 
@@ -52,31 +54,32 @@ h1 {
 }
 
 .card {
-  background: #252525;
-  border: 1px solid #444;
-  border-radius: 8px;
+  background: #3a3a3a;
+  border: 5px solid #0f0f0f;
+  border-radius: 16px;
   padding: 30px;
   width: 280px;
   text-decoration: none;
-  color: #e0e0e0;
+  color: #ffffff;
   transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-  border-color: #666;
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  border-color: #1a1a1a;
 }
 
 .card h2 {
   font-size: 1.8rem;
   margin-bottom: 10px;
-  color: #e0e0e0;
-  text-shadow: none;
+  color: #ffffff;
+  text-shadow: 2px 2px 2px #000000;
 }
 
 .card p {
   font-size: 1rem;
-  color: #aaa;
+  color: #ffffff;
+  text-shadow: 2px 2px 2px #000000;
 }
