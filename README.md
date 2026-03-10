@@ -5,7 +5,8 @@ Welcome to my website, this is where I will host my stupid projects such as Anth
 
 My projects:
 Anthony Clicker
-Anthony Slots (New)
+Anthony Slots
+Benny Button (New)
 
 Access the site here at [https://fregity-studios.github.io](https://fregity-studios.github.io)
 
