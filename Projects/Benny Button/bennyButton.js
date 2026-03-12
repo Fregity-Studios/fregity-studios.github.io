@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const voiceLines = [
         'Resources/voiceline1.mp3',
+        'Resources/voiceline2.mp3',
         // add more here
     ];
 
