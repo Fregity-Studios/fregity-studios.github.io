@@ -115,38 +115,57 @@ async function spin() {
   const maxCount = Math.max(...Object.values(counts));
 
   if (maxCount === slotValues.length) {
-    if (slotValues.length === 4) {
-      const multiplier = 500;
-      updateCoins(bet * multiplier);
-      result.textContent = `🔥 500× MEGA JACKPOT! +${formatNumber(bet * multiplier)} coins`;
-      createConfetti(300);
-      winSound.play();
-    } else {
-      let symbol = slotValues[0];
-      let multiplier = 15;
-      if (symbol === '🍆') multiplier = 18;
-      else if (symbol === '💎') multiplier = 22;
-      else if (symbol === '7️') multiplier = 75;
+  // All symbols match (jackpot) — 3 reels or 4 reels
 
-      updateCoins(bet * multiplier);
-      result.textContent = `💰 JACKPOT! +${formatNumber(bet * multiplier)} coins`;
-      createConfetti(200);
-      winSound.play();
-    }
-  } else if (maxCount === 3) {
-    const tripleMultiplier = 5;
-    updateCoins(bet * tripleMultiplier);
-    result.textContent = `✨ Triple Win! +${formatNumber(bet * tripleMultiplier)} coins`;
-    winSound.play();
-    createConfetti(100);   // slightly bigger so you actually see it
-  } else if (maxCount === 2) {
-    const pairMultiplier = 2;
-    updateCoins(bet * pairMultiplier);
-    result.textContent = `🎉 Small Win! +${formatNumber(bet * pairMultiplier)} coins`;
+  if (slotValues.length === 4) {
+    // 4-of-a-kind — always flat 500× regardless of symbol
+    const multiplier = 500;
+    updateCoins(bet * multiplier);
+    result.textContent = `🔥 500× MEGA JACKPOT! +${formatNumber(bet * multiplier)} coins`;
+    createConfetti(300);
     winSound.play();
   } else {
-    result.textContent = "❌ Try Again!";
+    // All 3 same on 3 reels — special multipliers apply
+    let symbol = slotValues[0];
+    let multiplier = 15;
+    if (symbol === '🍆') multiplier = 18;
+    else if (symbol === '💎') multiplier = 22;
+    else if (symbol === '7️') multiplier = 75;
+
+    updateCoins(bet * multiplier);
+    result.textContent = `💰 JACKPOT! +${formatNumber(bet * multiplier)} coins`;
+    createConfetti(200);
+    winSound.play();
   }
+} 
+else if (maxCount === 3) {
+  // Exactly 3 matching symbols (with 4 slots active)
+  let symbol = null;
+  for (let s in counts) {
+    if (counts[s] === 3) {
+      symbol = s;
+      break;
+    }
+  }
+
+  let tripleMultiplier = 15;  // default for non-special → more fun than 5×
+  if (symbol === '🍆') tripleMultiplier = 18;
+  else if (symbol === '💎') tripleMultiplier = 22;
+  else if (symbol === '7️') tripleMultiplier = 75;
+
+  updateCoins(bet * tripleMultiplier);
+  result.textContent = `✨ Triple Win! +${formatNumber(bet * tripleMultiplier)} coins`;
+  winSound.play();
+  createConfetti(100);
+} 
+else if (maxCount === 2) {
+  const pairMultiplier = 2;
+  updateCoins(bet * pairMultiplier);
+  result.textContent = `🎉 Small Win! +${formatNumber(bet * pairMultiplier)} coins`;
+  winSound.play();
+} else {
+  result.textContent = "❌ Try Again!";
+}
 
   checkCoinStatus();
   updateBetDisplay();
