@@ -421,7 +421,7 @@ buyFourthSlotBtn.addEventListener('click', () => {
 freeCoinBtn.addEventListener('click', async () => {
   result.textContent = "📺 Watching ad...";
   freeCoinBtn.disabled = true;
-  await new Promise(resolve => setTimeout(resolve, 3000));
+  await new Promise(resolve => setTimeout(resolve, 2000));
   updateCoins(1);
   result.textContent = "You got 1 free coin";
   freeCoinBtn.disabled = false;
