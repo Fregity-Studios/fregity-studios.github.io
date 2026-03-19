@@ -83,3 +83,78 @@ h1 {
   color: #ffffff;
   text-shadow: 2px 2px 2px #000000;
 }
+
+/* ──────────────────────────────────────── */
+/*     MOBILE BLOCK - fixed version           */
+/* ──────────────────────────────────────── */
+
+.mobile-block {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #0d0d0d;
+  color: white;
+  z-index: 9999;
+  font-family: 'Roboto Slab', serif;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.mobile-block .inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 1.8rem;
+}
+
+.mobile-block h1 {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(2rem, 8vw, 3.2rem);
+  color: #ffdd57;
+  margin: 0;
+  text-shadow: 0 4px 14px rgba(0,0,0,0.95);
+}
+
+.mobile-block .icon {
+  font-size: clamp(4rem, 15vw, 7rem);
+  color: #999;
+}
+
+.mobile-block p {
+  font-size: clamp(1rem, 4vw, 1.3rem);
+  line-height: 1.5;
+  max-width: 85%;
+  margin: 0 auto;
+  color: #ddd;
+}
+
+/* ──────── Activation ──────── */
+@media (max-width: 1280px) {
+  .mobile-block {
+    display: block !important;
+  }
+
+  /* Hide ALL content except the mobile block */
+  body > :not(.mobile-block) {
+    display: none !important;
+  }
+
+  body {
+    display: block !important;           /* ← key fix: kill flex on small screens */
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  html, body {
+    width: 100%;
+    height: 100%;
+  }
+}
