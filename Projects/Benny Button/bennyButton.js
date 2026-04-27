@@ -7,8 +7,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const voiceLines = [
-        'Resources/voiceline1.mp3',
-        'Resources/voiceline2.mp3',
+        'Resources/no.mp3',
+        'Resources/yes.mp3',
+        'Resources/ben.mp3',
+        'Resources/nah_nah_nah_nah.mp3',
+        'Resources/ho_ho_ho.mp3',
         // add more here
     ];
 
